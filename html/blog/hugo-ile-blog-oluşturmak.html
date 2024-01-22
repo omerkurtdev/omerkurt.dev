@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hugo ile blog oluşturmak</title>
+<meta name="author" content="omerkurt" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+</head>
+<body>
+<div id="preamble" class="status">
+<head>
+<meta name="color-scheme" content="light dark">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+:root {
+     color-scheme: light only;
+}
+::backdrop,:root {
+    --sans-font: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Nimbus Sans L",Roboto,"Noto Sans","Segoe UI",Arial,Helvetica,"Helvetica Neue",sans-serif;
+    --mono-font: Consolas,Menlo,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    --standard-border-radius: 5px;
+    --bg: #fff;
+    --accent-bg: #f5f7ff;
+    --text: #212121;
+    --text-light: #585858;
+    --border: #898EA4;
+    --accent:#3E3D40;
+    --accent-text: var(--bg);
+    --code: #c6a0f6;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef
+}
+
+    img,video {
+        opacity: .8;
+        margin-top:1px;
+    }
+}
+h2 > a {
+position:absolute;
+   }
+
+.published > p, .published {
+    margin-right: 1rem;
+    position:relative;
+    text-align:right;
+    margin:-3rem 0rem 0rem 0rem;
+    color:rgba(0,0,0,.4);
+}
+
+
+hr{
+    border:none;
+    height:0.5px;
+    margin:auto;
+   }
+/* Adjustments for title and date styling */
+   #preamble > header > nav > a {
+     border:none;
+     padding:0;
+   text-decoration:none;
+   margin:0 1rem 0 0;
+   }
+.outline-text-2 {
+   text-align:justify;
+   }
+.icerik > p {
+       margin: 1.5rem 0;
+}
+h2 > a {
+    text-decoration:none;
+   }
+   a:hover{
+       color:#212121;
+   }
+h2 {
+    font-weight:300;
+   }
+   h2::first-line {
+    font-weight:bold;
+   }
+   pre {
+       font-size:.8rem;
+   }
+</style>
+</head>
+<body>
+  <header>
+    <h1 style="font-weight: bold;">Ömer Kurt</h1>
+    <p style="color: #6a6a6a;">Özgür yazılım tutkunu, Emacsever</p>
+    <nav>
+      <a href="/">Ana Sayfa</a>
+      <a href="/blog/">Blog</a>
+      <a href="/Hakkımda.html">Hakkımda</a>
+      <a href="https://omerkurt.com.tr">ORUI</a>
+      <a href="/blog/rss.xml">RSS</a>
+    </nav>
+  </header>
+</body>
+</div>
+<div id="content" class="content">
+<div id="outline-container-orgfe5a016" class="outline-2">
+<h2 id="orgfe5a016">Hugo ile blog <br> oluşturmak</h2>
+<div class="outline-text-2" id="text-orgfe5a016">
+<p>
+Bu yazımda sizlere Hugo ile blog kurmayı anlatacağım.
+</p>
+</div>
+</div>
+<div id="outline-container-org460643f" class="outline-2">
+<h2 id="org460643f">Hugo Kurulumu</h2>
+<div class="outline-text-2" id="text-org460643f">
+<p>
+Hugo'yu kurmak için bu <a href="https://gohugo.io/installation/">dokümanı</a> takip edebilirsiniz.
+</p>
+</div>
+<div id="outline-container-orgc7e787e" class="outline-3">
+<h3 id="orgc7e787e">macOS</h3>
+<div class="outline-text-3" id="text-orgc7e787e">
+<pre class="example">
+brew install hugo
+</pre>
+</div>
+</div>
+<div id="outline-container-org9198bd3" class="outline-3">
+<h3 id="org9198bd3">Linux</h3>
+<div class="outline-text-3" id="text-org9198bd3">
+</div>
+<div id="outline-container-org49c125e" class="outline-4">
+<h4 id="org49c125e">Snap ile yüklemek</h4>
+<div class="outline-text-4" id="text-org49c125e">
+<pre class="example">
+snap install hugo --channel=extended
+snap install hugo
+</pre>
+</div>
+</div>
+<div id="outline-container-org3567d85" class="outline-4">
+<h4 id="org3567d85">Debian ve Ubuntu</h4>
+<div class="outline-text-4" id="text-org3567d85">
+<pre class="example">
+sudo apt-get install hugo
+</pre>
+</div>
+</div>
+<div id="outline-container-org0455a23" class="outline-4">
+<h4 id="org0455a23">Fedora ve Red Hat</h4>
+<div class="outline-text-4" id="text-org0455a23">
+<pre class="example">
+sudo dnf install hugo
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org60020ef" class="outline-3">
+<h3 id="org60020ef">Blog oluşturmak</h3>
+<div class="outline-text-3" id="text-org60020ef">
+<p>
+Bilgisayarımıza Hugo'yu kurduktan sonra aşağıdaki komutları kullanarak blogumuzu oluşturabiliriz.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">hugo new site hugo-site <span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">istedi&#287;iniz bir ad</span>
+<span style="font-weight: bold;">cd</span> hugo-site
+</pre>
+</div>
+<p>
+Artık gerekli olan dosyalarımız oluştu ama içinde şu an tema yok. Hadi şimdi tema indirelim. Tema indirmek için şu <a href="https://themes.gohugo.io/">linke</a> bakabilirsiniz. Temamızı seçtikten sonra şu komutları uygulayalım. Ben <a href="https://themes.gohugo.io/themes/hugo-papermod/">PaperMod</a> seçtim. Birçok temanın demo websitesi var, bakıp daha kolay karar verebilirsiniz. Seçtiğiniz temanın yaml mı toml mu olduğunu kontrol etmenizi öneririm. Benim seçtiğim tema yaml destekliyor, hugo default olarak toml destekliyor, bu yüzden komutuma "-&#x00ad;-format yaml" ekleyeceğim. Temanın dokümanlarını gözden geçirmenizi tavsiye ederim.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
+</pre>
+</div>
+
+<p>
+Temamızı indirdikten sonra düzenleyelim. Daha detaylı düzenlemek isterseniz şu <a href="https://github.com/adityatelange/hugo-PaperMod/blob/exampleSite/config.yml">linke</a> bakabilirsiniz
+</p>
+<div class="org-src-container">
+<pre class="src src-yaml">theme: "PaperMod"
+</pre>
+</div>
+
+<p>
+Sitemiz hazır, istediğiniz yerde paylaşabilirsiniz ister Github ister Netlify&#x2026;
+</p>
+
+<p>
+Post yayınlamak istiyorsak şu komut işimizi kolaylaştıracak:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ hugo new post/test.md
+Content <span style="font-style: italic;">"/home/omerkurt/hugo-site/content/post/test.md"</span> created
+</pre>
+</div>
+
+<p>
+Yeni oluşan belgenin içine girip draft: false yapmamız lazım. Birçok ayara exampleSite'den oluşabilirsiniz.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">[omerkurt@eos hugo-site]$ hugo server
+Watching for changes<span style="font-weight: bold;"> in</span> /home/omerkurt/hugo-site/{archetypes,assets,content,data,i18n,layouts,static,themes}
+Watching for config changes<span style="font-weight: bold;"> in</span> /home/omerkurt/hugo-site/hugo.yaml
+Start building sites &#8230;
+hugo v0.121.1+extended linux/amd64 <span style="font-weight: bold; font-style: italic;">BuildDate</span>=unknown
+
+
+                   | EN
+-------------------+-----
+  Pages            | 13
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     |  0
+  Processed images |  0
+  Aliases          |  3
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Built<span style="font-weight: bold;"> in</span> 18 ms
+Environment: <span style="font-style: italic;">"development"</span>
+Serving pages from memory
+Running<span style="font-weight: bold;"> in</span> Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (<span style="font-weight: bold;">bind</span> address 127.0.0.1)
+Press Ctrl+C to stop
+</pre>
+</div>
+
+<figure id="orgc17fb4b">
+<img src="../img/hugo-test.png" alt="hugo-test.png">
+
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div clas="yorum">
+<script src="https://giscus.app/client.js"
+        data-repo="omerkurtdev/org-blog"
+        data-repo-id="R_kgDOLHHwuA"
+        data-category="General"
+        data-category-id="DIC_kwDOLHHwuM4CcjGB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="tr"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+<footer style="font-size:.8rem; color:#6f6f6f;">
+<br>
+<hr>
+<p>Copyright © 2020-2024 Ömer Kurt<br>
+İçeriklerim <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr">CC-BY-SA 4.0</a> lisansı altındadır.
+</p>
+<p><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6) kullanılarak oluşturuldu.<a href="https://www.gnu.org/">GNU</a>/<a href="https://www.kernel.org/">Linux</a></p>
+</footer>
+</div>
+</body>
+</html>

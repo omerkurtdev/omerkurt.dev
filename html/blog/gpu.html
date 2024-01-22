@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GPU Passthrough Kurulumu QEMU/KVM</title>
+<meta name="author" content="omerkurt" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+</head>
+<body>
+<div id="preamble" class="status">
+<head>
+<meta name="color-scheme" content="light dark">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+:root {
+     color-scheme: light only;
+}
+::backdrop,:root {
+    --sans-font: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Nimbus Sans L",Roboto,"Noto Sans","Segoe UI",Arial,Helvetica,"Helvetica Neue",sans-serif;
+    --mono-font: Consolas,Menlo,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    --standard-border-radius: 5px;
+    --bg: #fff;
+    --accent-bg: #f5f7ff;
+    --text: #212121;
+    --text-light: #585858;
+    --border: #898EA4;
+    --accent:#3E3D40;
+    --accent-text: var(--bg);
+    --code: #c6a0f6;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef
+}
+
+    img,video {
+        opacity: .8;
+        margin-top:1px;
+    }
+}
+h2 > a {
+position:absolute;
+   }
+
+.published > p, .published {
+    margin-right: 1rem;
+    position:relative;
+    text-align:right;
+    margin:-3rem 0rem 0rem 0rem;
+    color:rgba(0,0,0,.4);
+}
+
+
+hr{
+    border:none;
+    height:0.5px;
+    margin:auto;
+   }
+/* Adjustments for title and date styling */
+   #preamble > header > nav > a {
+     border:none;
+     padding:0;
+   text-decoration:none;
+   margin:0 1rem 0 0;
+   }
+.outline-text-2 {
+   text-align:justify;
+   }
+.icerik > p {
+       margin: 1.5rem 0;
+}
+h2 > a {
+    text-decoration:none;
+   }
+   a:hover{
+       color:#212121;
+   }
+h2 {
+    font-weight:300;
+   }
+   h2::first-line {
+    font-weight:bold;
+   }
+   pre {
+       font-size:.8rem;
+   }
+</style>
+</head>
+<body>
+  <header>
+    <h1 style="font-weight: bold;">Ömer Kurt</h1>
+    <p style="color: #6a6a6a;">Özgür yazılım tutkunu, Emacsever</p>
+    <nav>
+      <a href="/">Ana Sayfa</a>
+      <a href="/blog/">Blog</a>
+      <a href="/Hakkımda.html">Hakkımda</a>
+      <a href="https://omerkurt.com.tr">ORUI</a>
+      <a href="/blog/rss.xml">RSS</a>
+    </nav>
+  </header>
+</body>
+</div>
+<div id="content" class="content">
+
+<div id="outline-container-orga81747d" class="outline-2">
+<h2 id="orga81747d">GPU Passthrough <br> QEMU/KVM <br> Kurulumu</h2>
+<div class="outline-text-2" id="text-orga81747d">
+<p class="published">
+Çrş 17-01-2024
+</p>
+<hr>
+
+
+
+
+<p>
+GPU passthrough bir GPU direkt olarak sanal makineye sunmasına yarayan
+bir tekniktir. Peki avantajı ne?
+</p>
+
+<ul class="org-ul">
+<li><b>Yüksek Performans</b>: GPU passthrough ile bir sanal makine, doğrudan
+fiziksel bir GPU'yu kullanabilir. Bu, yüksek performanslı grafik
+işlemleri, oyunlar veya diğer GPU yoğun uygulamalar için daha iyi bir
+performans sağlar.</li>
+
+<li><b>Oyun Performansı</b>: Oyuncular için GPU passthrough, sanal bir makinede
+oyun oynamak isteyenler için ideal bir çözüm olabilir. Bu, oyunları
+yüksek performansla çalıştırmanın yanı sıra, sanal makineler arasında
+GPU kaynaklarını etkili bir şekilde bölmenizi sağlar.</li>
+
+<li><b>Çeşitli Kullanım Senaryoları</b>: GPU passthrough, grafik tasarım
+uygulamaları, video düzenleme ve diğer GPU yoğun görevler için
+idealdir. Bu, bu tür uygulamaların sanal makineler üzerinde daha
+etkili bir şekilde çalışmasını sağlar.</li>
+</ul>
+
+<p>
+Bazı oyun geliştiricileri direkt olarak Linux desteklemediği için birçok
+Linux kullanıcıları bilgisayarını dualboot olarak kullanıyordu. Dualboot
+devri bitti diyebilirim eğer iyi bir ekran kartınız varsa. Sadece oyun
+olarak değil grafik tasarım uygulamaların çoğu Linux desteklemediği için
+GPU passthrough iyi bir seçim olacaktır.
+</p>
+
+<iframe width="320" height="200" src="https://www.youtube-nocookie.com/embed/UCEGDJJsFPs?si=HnAmAsM2_DTSvy9W" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</div>
+
+<div id="outline-container-org5c4198f" class="outline-2">
+<h2 id="org5c4198f">BIOS Ayarı</h2>
+<div class="outline-text-2" id="text-org5c4198f">
+<p>
+Bilgisayarınız AMD işlemcili ise <b>IOMMU</b>, <b>NX mode</b>, <b>SVM mode</b> aktif
+etmelisiniz. Eğer Intel işlemcili bilgisayarınız varsa <b>VT-D</b> ve <b>VT-X</b>
+ayarlarını aktif etmelisiniz.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">AMD CPU</th>
+<th scope="col" class="org-left">INTEL CPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">IOMMU</td>
+<td class="org-left">VT-X</td>
+</tr>
+
+<tr>
+<td class="org-left">NX mode</td>
+<td class="org-left">VT-D</td>
+</tr>
+
+<tr>
+<td class="org-left">SVM mode</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Intel İşlemcili bilgisayarlarınız için sadece bir seçenek gözüküyorsa
+birini aktif etmeniz yeterli olacaktır.
+</p>
+
+<p>
+Ek olarak Distronuz UEFI modunda yüklenmiş olmalıdır.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8b53f73" class="outline-2">
+<h2 id="org8b53f73">GRUB ayarı</h2>
+<div class="outline-text-2" id="text-org8b53f73">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">AMD CPU</th>
+<th scope="col" class="org-left">INTEL CPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">amd_iommu=on</td>
+<td class="org-left">intel_iommu=on</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<code>/etc/default/grub</code> belgesini işlemcinize göre düzenlemek gerekiyor. Ben
+Intel kullandığım için ona göre düzenledim.
+</p>
+
+<blockquote>
+<p>
+GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on iommu=pt"
+</p>
+</blockquote>
+
+<p>
+Grub'ı update etmemiz gerekiyor güncelledikten sonra bilgisayarımızı
+<b>yeniden başlatalım</b>.
+</p>
+
+<blockquote>
+<p>
+grub-mkconfig -o /boot/grub/grub.cfg
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgafb9dd3" class="outline-2">
+<h2 id="orgafb9dd3">IOMMU Gruplama</h2>
+<div class="outline-text-2" id="text-orgafb9dd3">
+<p>
+GPU grubu hakkında bilgi almamız gerekecek.
+</p>
+
+<pre class="example">
+#!/bin/bash
+shopt -s nullglob
+for g in /sys/kernel/iommu_groups/*; do
+    echo "IOMMU Group ${g##*/}:"
+    for d in $g/devices/*; do
+        echo -e "\t$(lspci -nns ${d##*/})"
+    done;
+done;
+</pre>
+
+<p>
+Scripti kaydedip çalıştıralım. GPU grubunu bulalım.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org677d05d" class="outline-2">
+<h2 id="org677d05d">QEMU ve Libvirt kurulumu</h2>
+<div class="outline-text-2" id="text-org677d05d">
+<p>
+Arch için:
+</p>
+
+<pre class="example">
+sudo pacman -S virt-manager qemu vde2 ebtables iptables-nft nftables dnsmasq bridge-utils ovmf
+</pre>
+</div>
+
+<div id="outline-container-org9226c20" class="outline-3">
+<h3 id="org9226c20">libvirt.conf</h3>
+<div class="outline-text-3" id="text-org9226c20">
+<p>
+<b>/etc/libvirt/libvirtd.conf</b> belgesine girip başındaki <code>#</code> işaretini
+kaldıralım
+</p>
+
+<pre class="example">
+unix_sock_group = "libvirt"
+unix_sock_rw_perms = "0770"
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf91c176" class="outline-3">
+<h3 id="orgf91c176">Loglama</h3>
+<div class="outline-text-3" id="text-orgf91c176">
+<p>
+En alt satıra loglarımızı kayıt altına almak için aşağıdaki satırları
+ekleyelim
+</p>
+
+<pre class="example">
+log_filters="3:qemu 1:libvirt"
+log_outputs="2:file:/var/log/libvirt/libvirtd.log"
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org81dd955" class="outline-3">
+<h3 id="org81dd955">Libvirt grubunu düzenleme</h3>
+<div class="outline-text-3" id="text-org81dd955">
+<p>
+Kullanıcı adımızı libvirt grubuna ekleyelim
+</p>
+
+<pre class="example">
+sudo usermod -a -G kvm,libvirt $(whoami)
+</pre>
+
+<p>
+Her bilgisayar açıldığı zaman otomatik olarak başlamasını istiyorsanız:
+</p>
+
+<pre class="example">
+sudo systemctl enable libvirtd
+sudo systemctl start libvirtd
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd877387" class="outline-3">
+<h3 id="orgd877387">qemu.conf</h3>
+<div class="outline-text-3" id="text-orgd877387">
+<p>
+<b>/etc/libvirt/qemu.conf</b> belgesinin içine girip sudo yazan ifadeyi
+kaldırıp kendi kullanıcı adımızı yazalım:
+</p>
+
+<pre class="example">
+user = "kullanıcı adı"
+group = "kullanıcı adı"
+</pre>
+
+<p>
+Kaydedip libvirtd yeniden başlatalım: <code>sudo systemctl restart libvirtd</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org83bbfe1" class="outline-3">
+<h3 id="org83bbfe1">Network</h3>
+<div class="outline-text-3" id="text-org83bbfe1">
+<pre class="example">
+sudo virsh net-autostart default
+sudo virsh net-start default
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9a4012b" class="outline-2">
+<h2 id="org9a4012b">Virtual Manager</h2>
+<div class="outline-text-2" id="text-org9a4012b">
+<p>
+Gerekli olan:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://www.microsoft.com/tr-tr/software-download/windows10ISO">Windows
+ISO</a></li>
+<li><a href="https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md">Virtio
+driver virtio-win ISO(stabil)</a></li>
+<li><a href="https://github.com/lexi-src/spoofed-qemu">spoofed-qemu</a> (İsteğe
+bağlı)</li>
+<li><a href="https://github.com/lexi-src/spoofed-edk2">spoofed-edk2</a> (İsteğe
+bağlı)</li>
+</ul>
+
+<p>
+<b>Video yüklenecek</b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org148905a" class="outline-2">
+<h2 id="org148905a">ROM Hazırlama</h2>
+<div class="outline-text-2" id="text-org148905a">
+<p>
+Rom hazırlamak için birkaç yöntem var. Ben Dumping yöntemine göre devam
+edeceğim.
+</p>
+</div>
+
+<div id="outline-container-orgdd60213" class="outline-3">
+<h3 id="orgdd60213">Dumping</h3>
+<div class="outline-text-3" id="text-orgdd60213">
+<p>
+Nvidia için:
+<a href="https://www.techpowerup.com/download/nvidia-nvflash/">NVFlash</a> AMD
+için: <a href="https://www.techpowerup.com/download/ati-atiflash/">AMDVBFlash /
+ATI ATIFlash</a>
+</p>
+
+<p>
+Ekran kartınıza göre indirdikten sonra TTY ekranına girmemiz gerekiyor.
+Display managerı durdurmamız gerekiyor. <code>systemctl stop sddm</code>
+(lightdm/gdm) Sonra ekran kartınıza göre aşağıdaki komutlarını yazalım.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Nvidia</th>
+<th scope="col" class="org-left">AMD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">sudo rmmod nvidia_uvm</td>
+<td class="org-left">sudo rmmod drm_kms_helper</td>
+</tr>
+
+<tr>
+<td class="org-left">sudo rmmod nvidia_drm</td>
+<td class="org-left">sudo rmmod amdgpu</td>
+</tr>
+
+<tr>
+<td class="org-left">sudo rmmod nvidia_modeset</td>
+<td class="org-left">sudo rmmod radeon</td>
+</tr>
+
+<tr>
+<td class="org-left">sudo rmmod nvidia</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+İndirdiğimiz uygulamayu(NVFlash/AMDVBFlash) dizine gidip çalıştırma
+yetkisi verelim:
+</p>
+
+<pre class="example">
+sudo chmod +x NVFlash #Nvdia için
+sudo chmod +x AMDVBFlash #AMD için
+</pre>
+
+<p>
+Nvidia için:
+</p>
+
+<pre class="example">
+sudo ./nvflash --save vbios.rom
+</pre>
+
+<p>
+AMD için:
+</p>
+
+<pre class="example">
+sudo ./amdvbflash -s 0 vbios.rom
+</pre>
+
+<ul class="org-ul">
+<li>Artık vbios.rom elimizde mevcut isterseniz bilgisayarınızı tekrar
+başlatabilirsiniz.</li>
+<li>Tekrar başlattıktan sonra vbios.rom okteta uygulaması ile açalım.
+Yüklü değilse kolayca paket yöneticinizden edinebilirsiniz.</li>
+<li>vbios.rom patchelemiz gerekiyor ctrl+f ile arama ekranını açık char
+olarak seçip VIDEO aratalım.</li>
+<li>İlk U harfini gördükten sonra sol tarafında kalan imlecin hepsini
+silelim. Farklı kaydet diyerek yeni oluşan romu patched.rom olarak
+adlandıralım.</li>
+<li>İzinleri ayarlayalım.</li>
+</ul>
+
+<pre class="example">
+sudo mkdir /usr/share/vgabios
+cp ./patched.rom /usr/share/vgabios/
+cd /usr/share/vgabios
+sudo chmod -R 644 patched.rom
+sudo chown yourusername:yourusername patched.rom
+</pre>
+
+<p>
+Rom eklemek: <code>&lt;rom file</code>'/usr/share/vgabios/patched.rom'/&gt;=
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc2a0ff" class="outline-2">
+<h2 id="orgbc2a0ff">Script</h2>
+<div class="outline-text-2" id="text-orgbc2a0ff">
+<div class="org-src-container">
+<pre class="src src-sh">git clone https://gitlab.com/risingprismtv/single-gpu-passthrough.git
+sudo chmod +x install_hooks.sh
+sudo ./install_hooks.sh
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbb732bd" class="outline-2">
+<h2 id="orgbb732bd">Kaynak</h2>
+<div class="outline-text-2" id="text-orgbb732bd">
+<ul class="org-ul">
+<li><a href="https://gitlab.com/risingprismtv/single-gpu-passthrough">https://gitlab.com/risingprismtv/single-gpu-passthrough</a></li>
+<li><a href="https://github.com/joeknock90/Single-GPU-Passthrough">https://github.com/joeknock90/Single-GPU-Passthrough</a></li>
+<li><a href="https://github.com/lexi-src">https://github.com/lexi-src</a> (isteğe bağlı script)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div clas="yorum">
+<script src="https://giscus.app/client.js"
+        data-repo="omerkurtdev/org-blog"
+        data-repo-id="R_kgDOLHHwuA"
+        data-category="General"
+        data-category-id="DIC_kwDOLHHwuM4CcjGB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="tr"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+<footer style="font-size:.8rem; color:#6f6f6f;">
+<br>
+<hr>
+<p>Copyright © 2020-2024 Ömer Kurt<br>
+İçeriklerim <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr">CC-BY-SA 4.0</a> lisansı altındadır.
+</p>
+<p><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6) kullanılarak oluşturuldu.<a href="https://www.gnu.org/">GNU</a>/<a href="https://www.kernel.org/">Linux</a></p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+:PROPERTIES:
+:ID:       4a1f02f7-8d63-4ea7-93ac-15298a027e89
+:END:
+
+#+MACRO: NEWLINE @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+title: Hugo ile blog oluşturmak
+#+subtitle: Hugo ile blog{{{newline}}}oluşturmak
+#+OPTIONS: toc:nil title:nil
+#+date: <2020-04-16>
+* Hugo ile blog{{{newline}}}oluşturmak
+Bu yazımda sizlere Hugo ile blog kurmayı anlatacağım.
+
+#+begin_comment
+[[file:../img/hugo-test.png]]
+Bu yazımda sizlere Hugo ile blog kurmayı anlatacağım.
+#+end_comment
+* Hugo Kurulumu
+Hugo'yu kurmak için bu [[https://gohugo.io/installation/][dokümanı]] takip edebilirsiniz.
+** macOS
+#+begin_src
+brew install hugo
+#+end_src
+** Linux
+*** Snap ile yüklemek
+#+begin_src
+snap install hugo --channel=extended
+snap install hugo
+#+end_src
+*** Debian ve Ubuntu
+#+begin_src
+sudo apt-get install hugo
+#+end_src
+*** Fedora ve Red Hat
+#+begin_src
+sudo dnf install hugo
+#+end_src
+** Blog oluşturmak
+Bilgisayarımıza Hugo'yu kurduktan sonra aşağıdaki komutları kullanarak blogumuzu oluşturabiliriz.
+
+#+begin_src bash
+hugo new site hugo-site #istediğiniz bir ad
+cd hugo-site
+#+end_src
+Artık gerekli olan dosyalarımız oluştu ama içinde şu an tema yok. Hadi şimdi tema indirelim. Tema indirmek için şu [[https://themes.gohugo.io/][linke]] bakabilirsiniz. Temamızı seçtikten sonra şu komutları uygulayalım. Ben [[https://themes.gohugo.io/themes/hugo-papermod/][PaperMod]] seçtim. Birçok temanın demo websitesi var, bakıp daha kolay karar verebilirsiniz. Seçtiğiniz temanın yaml mı toml mu olduğunu kontrol etmenizi öneririm. Benim seçtiğim tema yaml destekliyor, hugo default olarak toml destekliyor, bu yüzden komutuma "-\--format yaml" ekleyeceğim. Temanın dokümanlarını gözden geçirmenizi tavsiye ederim.
+
+#+begin_src bash
+git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
+#+end_src
+
+Temamızı indirdikten sonra düzenleyelim. Daha detaylı düzenlemek isterseniz şu [[https://github.com/adityatelange/hugo-PaperMod/blob/exampleSite/config.yml][linke]] bakabilirsiniz
+#+begin_src yaml
+theme: "PaperMod"
+#+end_src
+
+Sitemiz hazır, istediğiniz yerde paylaşabilirsiniz ister Github ister Netlify...
+
+Post yayınlamak istiyorsak şu komut işimizi kolaylaştıracak:
+#+begin_src bash
+$ hugo new post/test.md
+Content "/home/omerkurt/hugo-site/content/post/test.md" created
+#+end_src
+
+Yeni oluşan belgenin içine girip draft: false yapmamız lazım. Birçok ayara exampleSite'den oluşabilirsiniz.
+
+#+begin_src bash
+[omerkurt@eos hugo-site]$ hugo server
+Watching for changes in /home/omerkurt/hugo-site/{archetypes,assets,content,data,i18n,layouts,static,themes}
+Watching for config changes in /home/omerkurt/hugo-site/hugo.yaml
+Start building sites …
+hugo v0.121.1+extended linux/amd64 BuildDate=unknown
+
+
+                   | EN
+-------------------+-----
+  Pages            | 13
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     |  0
+  Processed images |  0
+  Aliases          |  3
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Built in 18 ms
+Environment: "development"
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+#+end_src
+[[file:../img/hugo-test.png]]

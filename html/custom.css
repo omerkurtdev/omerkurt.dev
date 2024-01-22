@@ -1,0 +1,22 @@
+
+.outline-3:nth-child(3){
+      display: inline-block;
+    vertical-align: top;
+  }
+.outline-3:nth-child(4) {
+    margin: 0 0 0 9rem;
+      display: inline-block;
+    vertical-align: top;
+  }
+@media only screen and (max-width: 600px) {
+.outline-3:nth-child(4) {
+    margin: 0 0 0 0;
+  }
+}
+
+h3 {
+    font-weight:300;
+   }
+   h3::first-line {
+    font-weight:bold;
+   }

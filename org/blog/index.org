@@ -1,0 +1,99 @@
+#+TITLE: Blog yazılarım ve notlarım
+#+MACRO: NEWLINE @@latex:\@@ @@html:<br>@@ @@ascii:|@@
+#+OPTIONS: toc:nil num:nil title:nil
+* [[file:gpu.org][GPU Passthrough{{{newline}}}QEMU/KVM{{{newline}}}Kurulumu]]
+#+begin_icerik
+#+begin_published
+17-01-2024
+#+end_published
+
+-----
+GPU passthrough bir GPU direkt olarak sanal makineye sunmasına yarayan
+bir tekniktir. Peki avantajı ne?
+
+#+begin_morelink
+[[file:gpu.org][Daha fazla...]]
+#+end_morelink
+#+end_icerik
+* [[file:Neden-org-mode.org][Neden{{{newline}}}org-mode]]
+#+begin_icerik
+#+begin_published
+14-01-2024
+#+end_published
+
+-----
+Neden org-mode markdown'a göre çok iyi? Benim için bir çok nedeni var ve sadece o nedenlerden birkaçını göstermem bile org-mode bakış açınızı değiştirecek. Markdown'a çok alıştık o da mükemmel araçlardan bir tanesi fakat org-mode kadar değil.
+
+#+begin_morelink
+[[file:Neden-org-mode.org][Daha fazla...]]
+#+end_morelink
+#+end_icerik
+* [[file:Org-mode-blog.org][Org-mode{{{newline}}}Blogum]]
+#+begin_icerik
+#+begin_published
+08-01-2023
+#+end_published
+
+-----
+Blogumu Hugo'dan org-mode'a taşıdım.
+
+#+begin_morelink
+[[file:Org-mode-blog.org][Daha fazla...]]
+#+end_morelink
+#+end_icerik
+* [[file:fedora-silverblue.org][Fedora Silverblue {{{newline}}} değişmeyen işletim  {{{newline}}} sistemi]]
+#+begin_icerik
+#+begin_published
+10-05-2022
+#+end_published
+
+-----
+Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını düşüneceksiniz ilk bakışta. Terminali açıp "dnf update" yazana kadar. Silverblue dağıtımı dnf paket yöneticisi ile gelmez. Onun yerine rpm-ostree paket yöneticisi ile gelir. rpm-ostree ile her güncelleme, kaldırma yada yükleme yaptıktan sonra sisteminizi yeniden başlatmanızı isteyecek, diğer dağıtımlardan sonra bu durum bana garip gelmişti. Flatpak yüklü olarak geliyor, Flatpak üzerinden istediğiniz uygulamayı yüklediğinizde tekrar başlatmanıza gerek yok sisteminizin.
+
+#+begin_morelink
+[[file:fedora-silverblue.org][Daha fazla...]]
+#+end_morelink
+#+end_icerik
+* [[file:zsh.org][Neden ZSH{{{newline}}}kullanıyorum?]]
+#+begin_icerik
+#+begin_published
+19-04-2020
+#+end_published
+
+-----
+[[file:../img/zsh.gif]]
+Bash kabuğunu uzun süre kullandıktan sonra Zsh geçme fikri vardı aklımda özellikle renklendirme, otomatik tamamlama gibi birçok eklentiye sahip Zsh kabuğundan bahsedeceğim.
+
+#+begin_morelink
+[[file:zsh.org][Daha fazla...]]
+#+end_morelink
+#+end_icerik
+* [[file:hugo-ile-blog-oluşturmak.org][Hugo ile blog{{{newline}}}oluşturmak]]
+#+begin_icerik
+#+begin_published
+16-04-2020
+#+end_published
+
+-----
+[[file:../img/hugo-test.png]]
+Bu yazımda sizlere Hugo ile blog kurmayı anlatacağım.
+
+#+begin_morelink
+[[file:hugo-ile-blog-oluşturmak.org][Daha fazla...]]
+#+end_morelink
+#+end_icerik
+* [[file:android-linux-mu.org][Android {{{newline}}} Linux mu?]]
+#+begin_icerik
+#+begin_published
+20-03-2020
+#+end_published
+
+-----
+[[https://miro.medium.com/v2/resize:fit:580/0*vCZD5lu9OKTHW_YK.jpg]]
+
+Bu sorunun tam bir cevabı yok aslında, yazımdan da bahsedeceğim neden cevabı olmadığını. Birçok topluluk bu konu üzerinde çokça tartıştılar. Android’in bir Linux olup olmadığını anlamak için Linux’un ne olduğunu bilmeliyiz.
+
+#+begin_morelink
+[[file:android-linux-mu.org][Daha fazla...]]
+#+end_morelink
+#+end_icerik

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fedora Silverblue &lt;b&gt;</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+</head>
+<body>
+<div id="preamble" class="status">
+<head>
+<meta name="color-scheme" content="light dark">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+:root {
+     color-scheme: light only;
+}
+::backdrop,:root {
+    --sans-font: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Nimbus Sans L",Roboto,"Noto Sans","Segoe UI",Arial,Helvetica,"Helvetica Neue",sans-serif;
+    --mono-font: Consolas,Menlo,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    --standard-border-radius: 5px;
+    --bg: #fff;
+    --accent-bg: #f5f7ff;
+    --text: #212121;
+    --text-light: #585858;
+    --border: #898EA4;
+    --accent:#3E3D40;
+    --accent-text: var(--bg);
+    --code: #c6a0f6;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef
+}
+
+    img,video {
+        opacity: .8;
+        margin-top:1px;
+    }
+}
+h2 > a {
+position:absolute;
+   }
+
+.published > p, .published {
+    margin-right: 1rem;
+    position:relative;
+    text-align:right;
+    margin:-3rem 0rem 0rem 0rem;
+    color:rgba(0,0,0,.4);
+}
+
+
+hr{
+    border:none;
+    height:0.5px;
+    margin:auto;
+   }
+/* Adjustments for title and date styling */
+   #preamble > header > nav > a {
+     border:none;
+     padding:0;
+   text-decoration:none;
+   margin:0 1rem 0 0;
+   }
+.outline-text-2 {
+   text-align:justify;
+   }
+.icerik > p {
+       margin: 1.5rem 0;
+}
+h2 > a {
+    text-decoration:none;
+   }
+   a:hover{
+       color:#212121;
+   }
+h2 {
+    font-weight:300;
+   }
+   h2::first-line {
+    font-weight:bold;
+   }
+   pre {
+       font-size:.8rem;
+   }
+</style>
+</head>
+<body>
+  <header>
+    <h1 style="font-weight: bold;">Ömer Kurt</h1>
+    <p style="color: #6a6a6a;">Özgür yazılım tutkunu, Emacsever</p>
+    <nav>
+      <a href="/">Ana Sayfa</a>
+      <a href="/blog/">Blog</a>
+      <a href="/Hakkımda.html">Hakkımda</a>
+      <a href="https://omerkurt.com.tr">ORUI</a>
+      <a href="/blog/rss.xml">RSS</a>
+    </nav>
+  </header>
+</body>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Fedora Silverblue &lt;b&gt;</h1>
+</header>
+<div id="outline-container-org777534d" class="outline-2">
+<h2 id="org777534d">Immutable nedir?</h2>
+<div class="outline-text-2" id="text-org777534d">
+<p>
+Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını düşüneceksiniz ilk bakışta. Terminali açıp "dnf update" yazana kadar. Silverblue dağıtımı dnf paket yöneticisi ile gelmez. Onun yerine rpm-ostree paket yöneticisi ile gelir. rpm-ostree ile her güncelleme, kaldırma yada yükleme yaptıktan sonra sisteminizi yeniden başlatmanızı isteyecek, diğer dağıtımlardan sonra bu durum bana garip gelmişti. Flatpak yüklü olarak geliyor, Flatpak üzerinden istediğiniz uygulamayı yüklediğinizde tekrar başlatmanıza gerek yok sisteminizin.
+Immutable kavramını biraz açalım, değişmeyen işletim sistemi derken neyin kastedildiğinden bahsedelim.
+Kök dosya sistemi salt-okunur olarak gelir. Bu durum sisteminizde sizden izinsiz dosya değiştirmenin yada dosya yazmanın önüne geçer. Kurduğunuz her paket sisteminizden bağımsız katman üzerinde çalışır. Bilgisayarınızı bootlarken istediğiniz katmanlar arasında geçiş yapabilirsiniz. Kök dosya sistemini değiştirmenin en güzel yolu rpm-ostree paket yöneticisini kullanmak. Sisteminiz istenmedik bir şekilde bozulursa kolayca en son deployment'a geri dönebilirsiniz.
+</p>
+
+<p>
+rpm-ostree komutunu kullanarak bir paket yüklemek:
+</p>
+<pre class="example">
+$ sudo rpm-ostree install "paket_adi"
+</pre>
+<p>
+Bir önceki deployment'a geri dönmek:
+</p>
+<pre class="example">
+$ sudo rpm-ostree roolback
+</pre>
+</div>
+</div>
+<div id="outline-container-org91e86fc" class="outline-2">
+<h2 id="org91e86fc">Toolbox</h2>
+<div class="outline-text-2" id="text-org91e86fc">
+<p>
+Fedora Silverblue gibi immutable dağıtımlarda olması gereken güzel projelerden bir tanesi. Dağıtımınız içinde istediğiniz birçok dağıtıma ait olan imajları kullanarak konteyner oluşturmanıza olanak tanır. Podman'le birlikte çalışır. Konteyner içine yüklediğiniz uygulamaları ister grafik arayüz, ister cli ile çalıştırabilirsiniz. Ana sisteminiz(host) temiz kalmasını sağlar, istenmedik bir durum oluşursa kolayca kaldırabilirsiniz.
+</p>
+</div>
+<div id="outline-container-orgac62194" class="outline-3">
+<h3 id="orgac62194">Toolbox konteyner oluşturma</h3>
+<div class="outline-text-3" id="text-orgac62194">
+<p>
+Fedoranın en son imajını yükleyerek konteynerı size hazır hale getirir.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">$ toolbox create
+</pre>
+</div>
+
+<p>
+Yeni oluşan konteynerın içine girmenize yarar. Birden fazla konteyner varsa '-c' parametresi ile konteyner adını girip spesifik konteynerınızı yönetebilirsiniz.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">$ toolbox enter
+$ toolbox enter -c <span style="font-style: italic;">"konteyner_adi"</span>
+</pre>
+</div>
+
+<p>
+Host sisteminizden konteyner girmeden uygulama çalıştırmak için:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">$ toolbox run -c <span style="font-style: italic;">"konteyner_adi"</span> <span style="font-style: italic;">"uygulama_adi"</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org71c3a4d" class="outline-3">
+<h3 id="org71c3a4d">Toolbox ile Ubuntu konteynerı çalıştırma</h3>
+<div class="outline-text-3" id="text-org71c3a4d">
+<p>
+Toolbox ile Ubuntu'nun lts sürümlerini çalıştırmak isterseniz resmi olmayan bir podman imajı. Şu versiyonlar mevcut: 16.04, 18.04, 20.04, 21.10
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Clone the Jmennius branch</span>
+$ git clone --single-branch --branch introduce-ubuntu-lts-images https://github.com/Jmennius/toolbox ubuntu-toolbox
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">Build the image using podman (or dnf install podman-docker to use docker command with podman)</span>
+$ podman build -t toolbox-ubuntu:18.04 ubuntu-toolbox/images/ubuntu/18.04
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Create toolbox container from the built image</span>
+$ toolbox create --container my_ubuntu_18_04 --image toolbox-ubuntu:18.04
+
+Created container: my_ubuntu_18_04
+Enter with: toolbox enter my_ubuntu_18_04
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgff11b69" class="outline-3">
+<h3 id="orgff11b69">Toolbox ile Arch konteynerı çalıştırma</h3>
+<div class="outline-text-3" id="text-orgff11b69">
+<p>
+Toolbox resmi olarak desteklemiyor fakat yinede Toolbox için Arch imajı istiyorsanız şu komutları takip edin:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">$ git clone --single-branch --branch arch-image https://github.com/erazemk/toolbox.git arch-toolbox
+$ podman build -t toolbox-arch arch-toolbox/images/archlinux
+$ toolbox create --container archlinux --image toolbox-arch
+
+Created container: archlinux
+Enter with: toolbox enter archlinux
+</pre>
+</div>
+<hr>
+<p>
+Toolbox alternatifi bir projeden daha bahsetmek istiyorum kısaca. Projenin adı <a href="https://github.com/89luca89/distrobox">distrobox</a>. Toolbox Archlinux ve Fedora gibi birkaç dağıtımı desteklerken, distrobox daha fazla dağıtımı ve konteynerı desktekliyor. Birçok komutu toolbox ile aynı hatta ekstrası var mesela "distrobox-export" komutunu kullanarak konteyner içindeki uygulamanızı host sisteminize aktarır. Daha fazla detay için projenin github sayfasını göz gezdirebilirsiniz.
+</p>
+</div>
+</div>
+<div id="outline-container-org3fd3f52" class="outline-3">
+<h3 id="org3fd3f52">Kaynak</h3>
+<div class="outline-text-3" id="text-org3fd3f52">
+<hr>
+<ol class="org-ol">
+<li>Fedora Project. Updates and Rollbacks. (2 Mayıs 2022). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: <a href="https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/">https://docs.fedoraproject.org</a> | <a href="https://web.archive.org/web/20220504154831/https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/">Arşiv</a></li>
+<li>Tomáš Popela. What is Silverblue? (12 Temmuz 2019). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: <a href="https://fedoramagazine.org/what-is-silverblue/">https://fedoramagazine.org</a> | <a href="https://web.archive.org/web/20220504163927/https://fedoramagazine.org/what-is-silverblue/">Arşiv</a></li>
+<li>JayDoubleu. Can I make use of other containers like debian or arch. (3 Ocak 2021). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: <a href="https://discussion.fedoraproject.org/t/can-i-make-use-of-other-containers-like-debian-or-arch/25468/10">https://discussion.fedoraproject.org</a> | <a href="https://web.archive.org/web/20220504164558/https://discussion.fedoraproject.org/t/can-i-make-use-of-other-containers-like-debian-or-arch/25468/10">Arşiv</a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div clas="yorum">
+<script src="https://giscus.app/client.js"
+        data-repo="omerkurtdev/org-blog"
+        data-repo-id="R_kgDOLHHwuA"
+        data-category="General"
+        data-category-id="DIC_kwDOLHHwuM4CcjGB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="tr"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+<footer style="font-size:.8rem; color:#6f6f6f;">
+<br>
+<hr>
+<p>Copyright © 2020-2024 Ömer Kurt<br>
+İçeriklerim <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr">CC-BY-SA 4.0</a> lisansı altındadır.
+</p>
+<p><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6) kullanılarak oluşturuldu.<a href="https://www.gnu.org/">GNU</a>/<a href="https://www.kernel.org/">Linux</a></p>
+</footer>
+</div>
+</body>
+</html>

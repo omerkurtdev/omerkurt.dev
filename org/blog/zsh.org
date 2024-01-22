@@ -1,0 +1,52 @@
+:PROPERTIES:
+:ID:       05538ab1-3f67-44cc-b626-35ce9969fb9e
+:END:
+
+#+MACRO: NEWLINE @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+subtitle: Neden ZSH{{{newline}}}kullanıyorum?
+#+TITLE: Neden ZSH kullanıyorum?   
+#+DATE: <2020-04-19>
+#+OPTIONS: toc:nil title:nil broken-links:auto
+
+* Neden ZSH {{{newline}}} kullanıyorum?
+#+ATTR_HTML: :class published
+{{{date(%a %d-%m-%Y)}}}
+-----
+
+#+begin_comment
+[[file:../img/zsh.gif]]
+Bash kabuğunu uzun süre kullandıktan sonra Zsh geçme fikri vardı aklımda özellikle renklendirme, otomatik tamamlama gibi birçok eklentiye sahip Zsh kabuğundan bahsedeceğim.
+#+end_comment
+GNU/Linux işletim sistemi kullandıysanız Bash'in ne demek olduğunu aslında biliyorsunuz. Bash kabuğu GNU/Linux işletim sisteminde ve MacOS'te varsayılan olarak gelmekte. Bash'in açılımı ise "Bourne Again Shell"dir. En popüler kabuk yada komut dili yorumlayıcıları şunlardır:
+- Bash
+- Tcsh/Csh
+- Ksh
+- Zsh
+- Fish
+
+Benim favori kabuğumsa Zsh. Hatta bilgisayarıma format attığım zaman ilk kurduğum şeylerden biri kendisi. Oh My Zsh topluluğu harikalar yaratmış diyebilirim eklentileriyle, sadece eklenti değil [[https://github.com/ohmyzsh/ohmyzsh/][temalarıyla]] da özelleştirebilirsiniz.
+
+Oh My Zsh indirmek için aşağıdaki komutu çalıştırabilirsiniz.
+#+begin_src bash
+$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#+end_src
+Z Shell yada Zsh kabuğunu işlevsel kılan Oh My Zsh frameworkü, terminal kullanırken baya rahat gezinmemi sağlıyor. En çok kullandığım eklentilerini sırasıyla açıklayacağım.
+** [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
+En sevdiğim eklentilerden biri olan *"zsh-autosuggestions"* komut geçmişinize göre önerilerde bulunuyor. Birçok özelleştirmeye de imkan tanıyor.
+[[../img/zsh.png]]
+** [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
+Bir diğer eklenti ise "syntax-highlighting". Komut satırına yazdığınız komutları renklendirmeye ve vurgulamaya yarıyor.
+** [[https://github.com/wting/autojump][autojump]]
+Komut satırından başka bir klasöre geçişi kolaylaştırmaya yarayan bir eklenti. Dizinlere atlamak için sadece bir kez ziyaret etmeniz yeterli.
+** [[https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo][sudo]]
+Kabuktan bir paket indirdiğimizde bazen sudo yazmayı unutuyoruz. Bu eklentiyi tam 108 bin kişi starlamış. Sadece iki kez @@html:<kbd>esc</kbd>@@ tuşuna basarak komut satırının başına `sudo` eklenecektir, bu kadar kolay.
+** [[https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract][extract]]
+Bir sürü sıkıştırılmış arşiv türü var. Bunların hepsini dışarıyı çıkartırken farklı komutlar kullanmamız gerekiyor. "Extract" eklentisiyle, arşiv türlerinin komutlarını bilmeniz gerekmiyor. Tek bir komutla arşivinizi dışarı çıkartabileceksiniz. Toplam 35 arşiv formatını destekliyor.
+
+Daha fazla eklenti için şu [[https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins][linke]] bakmanızı öneririm. Temalara gelecek olursak ben **"Powerlevel9k"** temasını kullanıyorum. Bu temayı Oh My Zsh'a yüklemek için:
+#+begin_src bash
+$ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+#+end_src
+Ardından =~/.zshrc= belgesine girip temanın adını yazmanız gerekiyor:
+~ZSH_THEME="powerlevel9k/powerlevel9k"~
+[[../img/zsh.gif]]

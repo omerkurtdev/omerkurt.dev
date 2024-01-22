@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Org Mode Blog</title>
+<meta name="author" content="omerkurt" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+</head>
+<body>
+<div id="preamble" class="status">
+<head>
+<meta name="color-scheme" content="light dark">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+:root {
+     color-scheme: light only;
+}
+::backdrop,:root {
+    --sans-font: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Nimbus Sans L",Roboto,"Noto Sans","Segoe UI",Arial,Helvetica,"Helvetica Neue",sans-serif;
+    --mono-font: Consolas,Menlo,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    --standard-border-radius: 5px;
+    --bg: #fff;
+    --accent-bg: #f5f7ff;
+    --text: #212121;
+    --text-light: #585858;
+    --border: #898EA4;
+    --accent:#3E3D40;
+    --accent-text: var(--bg);
+    --code: #c6a0f6;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef
+}
+
+    img,video {
+        opacity: .8;
+        margin-top:1px;
+    }
+}
+h2 > a {
+position:absolute;
+   }
+
+.published > p, .published {
+    margin-right: 1rem;
+    position:relative;
+    text-align:right;
+    margin:-3rem 0rem 0rem 0rem;
+    color:rgba(0,0,0,.4);
+}
+
+
+hr{
+    border:none;
+    height:0.5px;
+    margin:auto;
+   }
+/* Adjustments for title and date styling */
+   #preamble > header > nav > a {
+     border:none;
+     padding:0;
+   text-decoration:none;
+   margin:0 1rem 0 0;
+   }
+.outline-text-2 {
+   text-align:justify;
+   }
+.icerik > p {
+       margin: 1.5rem 0;
+}
+h2 > a {
+    text-decoration:none;
+   }
+   a:hover{
+       color:#212121;
+   }
+h2 {
+    font-weight:300;
+   }
+   h2::first-line {
+    font-weight:bold;
+   }
+   pre {
+       font-size:.8rem;
+   }
+</style>
+</head>
+<body>
+  <header>
+    <h1 style="font-weight: bold;">Ömer Kurt</h1>
+    <p style="color: #6a6a6a;">Özgür yazılım tutkunu, Emacsever</p>
+    <nav>
+      <a href="/">Ana Sayfa</a>
+      <a href="/blog/">Blog</a>
+      <a href="/Hakkımda.html">Hakkımda</a>
+      <a href="https://omerkurt.com.tr">ORUI</a>
+      <a href="/blog/rss.xml">RSS</a>
+    </nav>
+  </header>
+</body>
+</div>
+<div id="content" class="content">
+
+<div id="outline-container-org772146d" class="outline-2">
+<h2 id="org772146d">Org-mode  <br>  Blogum</h2>
+<div class="outline-text-2" id="text-org772146d">
+<p class="published">
+Paz 08-01-2023
+</p>
+<hr>
+
+<p>
+Blogumu org-mode taşıdım. Birkaç aydır notlarımı zaten Emacs üzerinden tutuyordum, markdown olarak gayet kullanışlı framework ama org-mode alışınca büyülendim diyebilirim.
+</p>
+
+<p>
+Emacs'e geçtiğimden beri birçok çalışma akışımı ona göre şekillendirdim. Birçok kişisel verimi, LaTeX yazılarımı kolayca export etmemi sağlayan mükemmel araç. Org-mode ile ilgili yazımı bir sonraki postumda daha detaylı anlatacağım.
+</p>
+
+<p>
+Org-mode için kullandığım elisp kodu:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">package</span>)
+(<span style="font-weight: bold;">setq</span> package-user-dir (expand-file-name <span style="font-style: italic;">"./.packages"</span>))
+(<span style="font-weight: bold;">setq</span> package-archives '((<span style="font-style: italic;">"melpa"</span> . <span style="font-style: italic;">"https://melpa.org/packages/"</span>)
+                         (<span style="font-style: italic;">"elpa"</span> . <span style="font-style: italic;">"https://elpa.gnu.org/packages/"</span>)))
+
+(package-initialize)
+(<span style="font-weight: bold;">unless</span> package-archive-contents
+  (package-refresh-contents))
+
+(package-install 'htmlize)
+(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">ox-publish</span>)
+
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">file-contents</span> (file)
+  (<span style="font-weight: bold;">with-temp-buffer</span>
+    (insert-file-contents file)
+    (buffer-string)))
+
+(<span style="font-weight: bold;">setq</span> org-export-html-date-format-string <span style="font-style: italic;">"%Y-%m-%d"</span>)
+(<span style="font-weight: bold;">setq</span> html-preamble (file-contents <span style="font-style: italic;">"./org/html/preamble.html"</span>)
+      html-postamble(file-contents <span style="font-style: italic;">"./org/html/postamble.html"</span>))
+
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">m/org-publish-org-sitemap</span> (title list)
+  <span style="font-style: italic;">"Sitemap generation function."</span>
+  (concat <span style="font-style: italic;">"#+TITLE: Blog yaz&#305;lar&#305;m ve notlar&#305;m\n"</span>
+          <span style="font-style: italic;">"#+MACRO: NEWLINE @@latex:\\@@ @@html:&lt;br&gt;@@ @@ascii:|@@ \n\n"</span>
+          <span style="font-style: italic;">"#+OPTIONS: toc:nil num:nil title:nil \n"</span>
+          (org-list-to-subtree list)))
+
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">get-subtitle</span> (file project)
+  <span style="font-style: italic;">"Find the title of FILE in PROJECT."</span>
+  (<span style="font-weight: bold;">let</span> ((file (org-publish--expand-file-name file project)))
+    (<span style="font-weight: bold;">or</span> (org-publish-cache-get-file-property file <span style="font-weight: bold;">:subtitle</span> nil t)
+        (<span style="font-weight: bold;">let*</span> ((parsed-title (org-publish-find-property file <span style="font-weight: bold;">:subtitle</span> project 'html))
+               (title
+                (<span style="font-weight: bold;">if</span> parsed-title
+                    <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Remove property so that the return value is</span>
+                    <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">cache-able (i.e., it can be `</span><span style="font-weight: bold; font-style: italic; text-decoration: underline;">read</span><span style="font-weight: bold; font-style: italic;">' back).</span>
+                    (org-no-properties
+                     (org-element-interpret-data parsed-title))
+                  (file-name-nondirectory (file-name-sans-extension file)))))
+          (org-publish-cache-set-file-property file <span style="font-weight: bold;">:subtitle</span> title)))))
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">loomcom/get-preview</span> (filename)
+  <span style="font-style: italic;">"Get a preview of the content from an Org file."</span>
+  (<span style="font-weight: bold;">with-temp-buffer</span>
+    (insert-file-contents (concat <span style="font-style: italic;">"org/blog/"</span> filename))
+    (goto-char (point-min))
+    (<span style="font-weight: bold;">let</span> ((marker-start (<span style="font-weight: bold;">or</span> (<span style="font-weight: bold;">and</span> (re-search-forward <span style="font-style: italic;">"^#\\+begin_comment$"</span> nil t)
+                                 (match-end 0))
+                            (buffer-size)))
+          (marker-end (<span style="font-weight: bold;">or</span> (<span style="font-weight: bold;">and</span> (re-search-forward <span style="font-style: italic;">"^#\\+end_comment$"</span> nil t)
+                               (match-beginning 0))
+                          (buffer-size))))
+      (<span style="font-weight: bold;">when</span> (= marker-start (buffer-size))
+        (goto-char (point-min))
+        (<span style="font-weight: bold;">setq</span> marker-start (<span style="font-weight: bold;">or</span> (<span style="font-weight: bold;">and</span> (re-search-forward <span style="font-style: italic;">"^[</span><span style="font-style: italic;">^</span><span style="font-style: italic;">#]"</span> nil t)
+                                    (match-beginning 0))
+                               (buffer-size))
+              marker-end (<span style="font-weight: bold;">progn</span> (forward-paragraph) (point))))
+      (list (not (= marker-end (buffer-size)))
+            (string-trim (buffer-substring marker-start marker-end))))))
+
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">loomcom/sitemap-entry</span> (entry style project)
+  <span style="font-style: italic;">"Sitemap (Blog Main Page) Entry Formatter."</span>
+  (<span style="font-weight: bold;">when</span> (not (directory-name-p entry))
+    (format (concat <span style="font-style: italic;">"[[file:%s][%s]]\n"</span>
+                    <span style="font-style: italic;">"#+BEGIN_icerik\n"</span>
+                    <span style="font-style: italic;">"#+BEGIN_published\n"</span>
+                    <span style="font-style: italic;">"%s\n"</span>
+                    <span style="font-style: italic;">"#+END_published\n\n"</span>
+                    <span style="font-style: italic;">"-----\n"</span>
+                    <span style="font-style: italic;">"%s\n"</span>
+                    <span style="font-style: italic;">"#+END_icerik\n"</span>)
+            entry
+            (get-subtitle entry project)
+            (format-time-string <span style="font-style: italic;">"%d-%m-%Y"</span> (org-publish-find-date entry project))
+            (<span style="font-weight: bold;">let*</span> ((preview (loomcom/get-preview entry))
+                   (needs-more (car preview))
+                   (preview-text (cadr preview)))
+              (<span style="font-weight: bold;">if</span> needs-more
+                  (format (concat <span style="font-style: italic;">"%s\n\n"</span>
+                                  <span style="font-style: italic;">"#+BEGIN_morelink\n"</span>
+                                  <span style="font-style: italic;">"[[file:%s][Daha fazla...]]\n"</span>
+                                  <span style="font-style: italic;">"#+END_morelink\n"</span>)
+                          preview-text entry)
+                (format <span style="font-style: italic;">"%s"</span> preview-text))))))
+
+
+(<span style="font-weight: bold;">setq</span> org-html-validation-link nil
+      org-html-head-include-scripts nil
+      org-html-head-include-default-style nil
+      org-html-head <span style="font-style: italic;">"&lt;link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" /&gt;"</span>)
+
+
+(<span style="font-weight: bold;">setq</span> org-publish-project-alist
+      `((<span style="font-style: italic;">"pages"</span>
+         <span style="font-weight: bold;">:base-directory</span> <span style="font-style: italic;">"org"</span>
+         <span style="font-weight: bold;">:base-extension</span> <span style="font-style: italic;">"org"</span>
+         <span style="font-weight: bold;">:language</span> <span style="font-style: italic;">"tr"</span>
+         <span style="font-weight: bold;">:recursive</span> nil
+         <span style="font-weight: bold;">:with-author</span> nil
+         <span style="font-weight: bold;">:with-creator</span> nil
+         <span style="font-weight: bold;">:with-date</span> t
+         <span style="font-weight: bold;">:section-numbers</span> nil
+         <span style="font-weight: bold;">:time-stamp-file</span> nil
+         <span style="font-weight: bold;">:html-doctype</span> <span style="font-style: italic;">"html5"</span>
+         <span style="font-weight: bold;">:html-preamble</span> ,html-preamble
+         <span style="font-weight: bold;">:html-html5-fancy</span> t
+         <span style="font-weight: bold;">:publishing-directory</span> <span style="font-style: italic;">"html/"</span>
+         <span style="font-weight: bold;">:publishing-function</span> org-html-publish-to-html)
+        (<span style="font-style: italic;">"blog"</span>
+         <span style="font-weight: bold;">:section-numbers</span> nil
+         <span style="font-weight: bold;">:time-stamp-file</span> nil
+         <span style="font-weight: bold;">:sitemap-function</span> m/org-publish-org-sitemap
+         <span style="font-weight: bold;">:html-html5-fancy</span> t
+         <span style="font-weight: bold;">:language</span> <span style="font-style: italic;">"tr"</span>
+         <span style="font-weight: bold;">:html-doctype</span> <span style="font-style: italic;">"html5"</span>
+         <span style="font-weight: bold;">:base-directory</span> <span style="font-style: italic;">"org/blog"</span>
+         <span style="font-weight: bold;">:base-extension</span> <span style="font-style: italic;">"org"</span>
+         <span style="font-weight: bold;">:publishing-directory</span> <span style="font-style: italic;">"html/blog/"</span>
+         <span style="font-weight: bold;">:publish-function</span> org-html-publish-to-html
+         <span style="font-weight: bold;">:auto-sitemap</span> t
+         <span style="font-weight: bold;">:sitemap-title</span> <span style="font-style: italic;">"blog posts"</span>
+         <span style="font-weight: bold;">:html-preamble</span> ,html-preamble
+         <span style="font-weight: bold;">:html-postamble</span> ,html-postamble
+         <span style="font-weight: bold;">:sitemap-filename</span> <span style="font-style: italic;">"index.org"</span>
+         <span style="font-weight: bold;">:sitemap-sort-files</span> anti-chronologically
+         <span style="font-weight: bold;">:sitemap-format-entry</span> loomcom/sitemap-entry)
+        (<span style="font-style: italic;">"static"</span>
+         <span style="font-weight: bold;">:base-directory</span> <span style="font-style: italic;">"org"</span>
+         <span style="font-weight: bold;">:base-extension</span> <span style="font-style: italic;">"css</span><span style="font-weight: bold; font-style: italic;">\\</span><span style="font-weight: bold; font-style: italic;">|</span><span style="font-style: italic;">txt</span><span style="font-weight: bold; font-style: italic;">\\</span><span style="font-weight: bold; font-style: italic;">|</span><span style="font-style: italic;">jpg</span><span style="font-weight: bold; font-style: italic;">\\</span><span style="font-weight: bold; font-style: italic;">|</span><span style="font-style: italic;">gif</span><span style="font-weight: bold; font-style: italic;">\\</span><span style="font-weight: bold; font-style: italic;">|</span><span style="font-style: italic;">png"</span>
+         <span style="font-weight: bold;">:recursive</span> t
+         <span style="font-weight: bold;">:publishing-directory</span>  <span style="font-style: italic;">"html/"</span>
+         <span style="font-weight: bold;">:publishing-function</span> org-publish-attachment)
+
+        (<span style="font-style: italic;">"omerkurt.dev"</span> <span style="font-weight: bold;">:components</span> (<span style="font-style: italic;">"pages"</span> <span style="font-style: italic;">"blog"</span> <span style="font-style: italic;">"static"</span> ))))
+(org-publish-remove-all-timestamps)
+(org-publish <span style="font-style: italic;">"omerkurt.dev"</span> t)
+
+(message <span style="font-style: italic;">"build complete!"</span>)
+
+<span style="font-weight: bold; font-style: italic;">;;; </span><span style="font-weight: bold; font-style: italic;">build-site.el ends here</span>
+</pre>
+</div>
+
+<p>
+Blog post preview için Seth Morabito'nun <a href="https://loomcom.com/blog/simplifying-my-blog/">kodundan</a> yararlandım kendisine teşekkür ederim.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div clas="yorum">
+<script src="https://giscus.app/client.js"
+        data-repo="omerkurtdev/org-blog"
+        data-repo-id="R_kgDOLHHwuA"
+        data-category="General"
+        data-category-id="DIC_kwDOLHHwuM4CcjGB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="tr"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+<footer style="font-size:.8rem; color:#6f6f6f;">
+<br>
+<hr>
+<p>Copyright © 2020-2024 Ömer Kurt<br>
+İçeriklerim <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr">CC-BY-SA 4.0</a> lisansı altındadır.
+</p>
+<p><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6) kullanılarak oluşturuldu.<a href="https://www.gnu.org/">GNU</a>/<a href="https://www.kernel.org/">Linux</a></p>
+</footer>
+</div>
+</body>
+</html>

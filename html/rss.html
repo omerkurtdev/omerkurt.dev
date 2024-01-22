@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blog yazılarım ve notlarım</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+</head>
+<body>
+<div id="preamble" class="status">
+<head>
+<meta name="color-scheme" content="light dark">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+:root {
+     color-scheme: light only;
+}
+::backdrop,:root {
+    --sans-font: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Nimbus Sans L",Roboto,"Noto Sans","Segoe UI",Arial,Helvetica,"Helvetica Neue",sans-serif;
+    --mono-font: Consolas,Menlo,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    --standard-border-radius: 5px;
+    --bg: #fff;
+    --accent-bg: #f5f7ff;
+    --text: #212121;
+    --text-light: #585858;
+    --border: #898EA4;
+    --accent:#3E3D40;
+    --accent-text: var(--bg);
+    --code: #c6a0f6;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef
+}
+
+    img,video {
+        opacity: .8;
+        margin-top:1px;
+    }
+}
+h2 > a {
+position:absolute;
+   }
+
+.published > p, .published {
+    margin-right: 1rem;
+    position:relative;
+    text-align:right;
+    margin:-3rem 0rem 0rem 0rem;
+    color:rgba(0,0,0,.4);
+}
+
+
+hr{
+    border:none;
+    height:0.5px;
+    margin:auto;
+   }
+/* Adjustments for title and date styling */
+   #preamble > header > nav > a {
+     border:none;
+     padding:0;
+   text-decoration:none;
+   margin:0 1rem 0 0;
+   }
+.outline-text-2 {
+   text-align:justify;
+   }
+.icerik > p {
+       margin: 1.5rem 0;
+}
+h2 > a {
+    text-decoration:none;
+   }
+   a:hover{
+       color:#212121;
+   }
+h2 {
+    font-weight:300;
+   }
+   h2::first-line {
+    font-weight:bold;
+   }
+   pre {
+       font-size:.8rem;
+   }
+</style>
+</head>
+<body>
+  <header>
+    <h1 style="font-weight: bold;">Ömer Kurt</h1>
+    <p style="color: #6a6a6a;">Özgür yazılım tutkunu, Emacsever</p>
+    <nav>
+      <a href="/">Ana Sayfa</a>
+      <a href="/blog/">Blog</a>
+      <a href="/Hakkımda.html">Hakkımda</a>
+      <a href="https://omerkurt.com.tr">ORUI</a>
+      <a href="/blog/rss.xml">RSS</a>
+    </nav>
+  </header>
+</body>
+</div>
+<div id="content" class="content">
+<div id="outline-container-org0431a28" class="outline-2">
+<h2 id="org0431a28">GPU Passthrough Kurulumu QEMU/KVM</h2>
+<div class="outline-text-2" id="text-org0431a28">
+<div class="published" id="org33b3756">
+<p>
+GPU passthrough bir GPU direkt olarak sanal makineye sunmasına yarayan
+bir tekniktir. Peki avantajı ne?
+</p>
+
+<div class="morelink" id="orgeb83d6a">
+<p>
+<a href="gpu.html">Daha fazla&#x2026;</a>
+</p>
+
+</div>
+
+</div>
+<hr>
+</div>
+</div>
+<div id="outline-container-org1cc57d0" class="outline-2">
+<h2 id="org1cc57d0">Neden Org Mode</h2>
+<div class="outline-text-2" id="text-org1cc57d0">
+<div class="published" id="org6aaa95e">
+<p>
+Neden org-mode markdown'a göre çok iyi? Benim için bir çok nedeni var ve sadece o nedenlerden birkaçını göstermem bile org-mode bakış açınızı değiştirecek. Markdown'a çok alıştık o da mükemmel araçlardan bir tanesi fakat org-mode kadar değil.
+</p>
+
+<div class="morelink" id="org3c6912c">
+<p>
+<a href="Neden-org-mode.html">Daha fazla&#x2026;</a>
+</p>
+
+</div>
+
+</div>
+<hr>
+</div>
+</div>
+<div id="outline-container-orgebd3405" class="outline-2">
+<h2 id="orgebd3405">Org Mode Blog</h2>
+<div class="outline-text-2" id="text-orgebd3405">
+<div class="published" id="org26a6612">
+<p>
+Blogumu Hugo'dan org-mode'a taşıdım.
+</p>
+
+<div class="morelink" id="orgfa4b35e">
+<p>
+<a href="Org-mode-blog.html">Daha fazla&#x2026;</a>
+</p>
+
+</div>
+
+</div>
+<hr>
+</div>
+</div>
+<div id="outline-container-orga4e032d" class="outline-2">
+<h2 id="orga4e032d">Fedora Silverblue değişmeyen işletim sistemi</h2>
+<div class="outline-text-2" id="text-orga4e032d">
+<div class="published" id="orga735d07">
+<p>
+Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını düşüneceksiniz ilk bakışta. Terminali açıp "dnf update" yazana kadar. Silverblue dağıtımı dnf paket yöneticisi ile gelmez. Onun yerine rpm-ostree paket yöneticisi ile gelir. rpm-ostree ile her güncelleme, kaldırma yada yükleme yaptıktan sonra sisteminizi yeniden başlatmanızı isteyecek, diğer dağıtımlardan sonra bu durum bana garip gelmişti. Flatpak yüklü olarak geliyor, Flatpak üzerinden istediğiniz uygulamayı yüklediğinizde tekrar başlatmanıza gerek yok sisteminizin.
+</p>
+
+<div class="morelink" id="org7a96f56">
+<p>
+<a href="fedora-silverblue.html">Daha fazla&#x2026;</a>
+</p>
+
+</div>
+
+</div>
+<hr>
+</div>
+</div>
+<div id="outline-container-org243524a" class="outline-2">
+<h2 id="org243524a">Neden ZSH kullanıyorum?</h2>
+<div class="outline-text-2" id="text-org243524a">
+<div class="published" id="org657dfad">
+<p>
+<img src="../img/zsh.gif" alt="zsh.gif">
+Bash kabuğunu uzun süre kullandıktan sonra Zsh geçme fikri vardı aklımda özellikle renklendirme, otomatik tamamlama gibi birçok eklentiye sahip Zsh kabuğundan bahsedeceğim.
+</p>
+
+<div class="morelink" id="org8f8daee">
+<p>
+<a href="zsh.html">Daha fazla&#x2026;</a>
+</p>
+
+</div>
+
+</div>
+<hr>
+</div>
+</div>
+<div id="outline-container-orga10c47b" class="outline-2">
+<h2 id="orga10c47b">Hugo ile blog oluşturmak</h2>
+<div class="outline-text-2" id="text-orga10c47b">
+<div class="published" id="org9a50d7e">
+<p>
+<img src="../img/hugo-test.png" alt="hugo-test.png">
+Bu yazımda sizlere Hugo ile blog kurmayı anlatacağım.
+</p>
+
+<div class="morelink" id="org298c262">
+<p>
+<a href="hugo-ile-blog-oluşturmak.html">Daha fazla&#x2026;</a>
+</p>
+
+</div>
+
+</div>
+<hr>
+</div>
+</div>
+<div id="outline-container-orgfd26e2e" class="outline-2">
+<h2 id="orgfd26e2e">Android Linux mu?</h2>
+<div class="outline-text-2" id="text-orgfd26e2e">
+<div class="published" id="org9c67003">
+
+<figure id="org2bafb6b">
+<img src="https://miro.medium.com/v2/resize:fit:580/0*vCZD5lu9OKTHW_YK.jpg" alt="0*vCZD5lu9OKTHW_YK.jpg">
+
+</figure>
+
+<p>
+Bu sorunun tam bir cevabı yok aslında, yazımdan da bahsedeceğim neden cevabı olmadığını. Birçok topluluk bu konu üzerinde çokça tartıştılar. Android’in bir Linux olup olmadığını anlamak için Linux’un ne olduğunu bilmeliyiz.
+</p>
+
+<div class="morelink" id="orgfe37041">
+<p>
+<a href="android-linux-mu.html">Daha fazla&#x2026;</a>
+</p>
+
+</div>
+
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div clas="yorum">
+<script src="https://giscus.app/client.js"
+        data-repo="omerkurtdev/org-blog"
+        data-repo-id="R_kgDOLHHwuA"
+        data-category="General"
+        data-category-id="DIC_kwDOLHHwuM4CcjGB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="tr"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+<footer style="font-size:.8rem; color:#6f6f6f;">
+<br>
+<hr>
+<p>Copyright © 2020-2024 Ömer Kurt<br>
+İçeriklerim <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr">CC-BY-SA 4.0</a> lisansı altındadır.
+</p>
+<p><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6) kullanılarak oluşturuldu.<a href="https://www.gnu.org/">GNU</a>/<a href="https://www.kernel.org/">Linux</a></p>
+</footer>
+</div>
+</body>
+</html>

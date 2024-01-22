@@ -1,0 +1,245 @@
+:PROPERTIES:
+:ID:       5114abe0-24b5-4a6b-87e0-f572ca46e2b0
+:END:
+#+TITLE: GPU Passthrough Kurulumu QEMU/KVM
+#+subtitle: GPU Passthrough{{{newline}}}QEMU/KVM{{{newline}}}Kurulumu
+#+DATE: <2024-01-17 Çrş>
+#+MACRO: NEWLINE @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+OPTIONS: toc:nil title:nil broken-links:auto ^:nil
+
+* GPU Passthrough{{{newline}}}QEMU/KVM{{{newline}}}Kurulumu
+
+#+ATTR_HTML: :class published
+{{{date(%a %d-%m-%Y)}}}
+-----
+
+#+begin_comment
+GPU passthrough bir GPU direkt olarak sanal makineye sunmasına yarayan
+bir tekniktir. Peki avantajı ne?
+#+end_comment
+
+
+
+
+GPU passthrough bir GPU direkt olarak sanal makineye sunmasına yarayan
+bir tekniktir. Peki avantajı ne?
+
+- *Yüksek Performans*: GPU passthrough ile bir sanal makine, doğrudan
+  fiziksel bir GPU'yu kullanabilir. Bu, yüksek performanslı grafik
+  işlemleri, oyunlar veya diğer GPU yoğun uygulamalar için daha iyi bir
+  performans sağlar.
+
+- *Oyun Performansı*: Oyuncular için GPU passthrough, sanal bir makinede
+  oyun oynamak isteyenler için ideal bir çözüm olabilir. Bu, oyunları
+  yüksek performansla çalıştırmanın yanı sıra, sanal makineler arasında
+  GPU kaynaklarını etkili bir şekilde bölmenizi sağlar.
+
+- *Çeşitli Kullanım Senaryoları*: GPU passthrough, grafik tasarım
+  uygulamaları, video düzenleme ve diğer GPU yoğun görevler için
+  idealdir. Bu, bu tür uygulamaların sanal makineler üzerinde daha
+  etkili bir şekilde çalışmasını sağlar.
+
+Bazı oyun geliştiricileri direkt olarak Linux desteklemediği için birçok
+Linux kullanıcıları bilgisayarını dualboot olarak kullanıyordu. Dualboot
+devri bitti diyebilirim eğer iyi bir ekran kartınız varsa. Sadece oyun
+olarak değil grafik tasarım uygulamaların çoğu Linux desteklemediği için
+GPU passthrough iyi bir seçim olacaktır.
+
+#+begin_export html
+<iframe width="320" height="200" src="https://www.youtube-nocookie.com/embed/UCEGDJJsFPs?si=HnAmAsM2_DTSvy9W" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+#+end_export
+
+* BIOS Ayarı
+Bilgisayarınız AMD işlemcili ise *IOMMU*, *NX mode*, *SVM mode* aktif
+etmelisiniz. Eğer Intel işlemcili bilgisayarınız varsa *VT-D* ve *VT-X*
+ayarlarını aktif etmelisiniz.
+
+| AMD CPU  | INTEL CPU |
+|----------+-----------|
+| IOMMU    | VT-X      |
+| NX mode  | VT-D      |
+| SVM mode |           |
+
+Intel İşlemcili bilgisayarlarınız için sadece bir seçenek gözüküyorsa
+birini aktif etmeniz yeterli olacaktır.
+
+Ek olarak Distronuz UEFI modunda yüklenmiş olmalıdır.
+
+* GRUB ayarı
+| AMD CPU      | INTEL CPU      |
+|--------------+----------------|
+| amd_iommu=on | intel_iommu=on |
+
+=/etc/default/grub= belgesini işlemcinize göre düzenlemek gerekiyor. Ben
+Intel kullandığım için ona göre düzenledim.
+
+#+begin_quote
+GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on iommu=pt"
+#+end_quote
+
+Grub'ı update etmemiz gerekiyor güncelledikten sonra bilgisayarımızı
+*yeniden başlatalım*.
+
+#+begin_quote
+grub-mkconfig -o /boot/grub/grub.cfg
+#+end_quote
+
+* IOMMU Gruplama
+GPU grubu hakkında bilgi almamız gerekecek.
+
+#+begin_src
+#!/bin/bash
+shopt -s nullglob
+for g in /sys/kernel/iommu_groups/*; do
+    echo "IOMMU Group ${g##*/}:"
+    for d in $g/devices/*; do
+        echo -e "\t$(lspci -nns ${d##*/})"
+    done;
+done;
+#+end_src
+
+Scripti kaydedip çalıştıralım. GPU grubunu bulalım.
+
+* QEMU ve Libvirt kurulumu
+Arch için:
+
+#+begin_src
+sudo pacman -S virt-manager qemu vde2 ebtables iptables-nft nftables dnsmasq bridge-utils ovmf
+#+end_src
+
+** libvirt.conf
+*/etc/libvirt/libvirtd.conf* belgesine girip başındaki =#= işaretini
+kaldıralım
+
+#+begin_src
+unix_sock_group = "libvirt"
+unix_sock_rw_perms = "0770"
+#+end_src
+
+** Loglama
+En alt satıra loglarımızı kayıt altına almak için aşağıdaki satırları
+ekleyelim
+
+#+begin_src
+log_filters="3:qemu 1:libvirt"
+log_outputs="2:file:/var/log/libvirt/libvirtd.log"
+#+end_src
+
+** Libvirt grubunu düzenleme
+Kullanıcı adımızı libvirt grubuna ekleyelim
+
+#+begin_src
+sudo usermod -a -G kvm,libvirt $(whoami)
+#+end_src
+
+Her bilgisayar açıldığı zaman otomatik olarak başlamasını istiyorsanız:
+
+#+begin_src
+sudo systemctl enable libvirtd
+sudo systemctl start libvirtd
+#+end_src
+
+** qemu.conf
+*/etc/libvirt/qemu.conf* belgesinin içine girip sudo yazan ifadeyi
+kaldırıp kendi kullanıcı adımızı yazalım:
+
+#+begin_src
+user = "kullanıcı adı"
+group = "kullanıcı adı"
+#+end_src
+
+Kaydedip libvirtd yeniden başlatalım: =sudo systemctl restart libvirtd=
+
+** Network
+#+begin_src
+sudo virsh net-autostart default
+sudo virsh net-start default
+#+end_src
+
+* Virtual Manager
+Gerekli olan:
+
+- [[https://www.microsoft.com/tr-tr/software-download/windows10ISO][Windows
+  ISO]]
+- [[https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md][Virtio
+  driver virtio-win ISO(stabil)]]
+- [[https://github.com/lexi-src/spoofed-qemu][spoofed-qemu]] (İsteğe
+  bağlı)
+- [[https://github.com/lexi-src/spoofed-edk2][spoofed-edk2]] (İsteğe
+  bağlı)
+
+*Video yüklenecek*
+
+* ROM Hazırlama
+Rom hazırlamak için birkaç yöntem var. Ben Dumping yöntemine göre devam
+edeceğim.
+
+** Dumping
+Nvidia için:
+[[https://www.techpowerup.com/download/nvidia-nvflash/][NVFlash]] AMD
+için: [[https://www.techpowerup.com/download/ati-atiflash/][AMDVBFlash /
+ATI ATIFlash]]
+
+Ekran kartınıza göre indirdikten sonra TTY ekranına girmemiz gerekiyor.
+Display managerı durdurmamız gerekiyor. =systemctl stop sddm=
+(lightdm/gdm) Sonra ekran kartınıza göre aşağıdaki komutlarını yazalım.
+
+| Nvidia                    | AMD                       |
+|---------------------------+---------------------------|
+| sudo rmmod nvidia_uvm     | sudo rmmod drm_kms_helper |
+| sudo rmmod nvidia_drm     | sudo rmmod amdgpu         |
+| sudo rmmod nvidia_modeset | sudo rmmod radeon         |
+| sudo rmmod nvidia         |                           |
+
+İndirdiğimiz uygulamayu(NVFlash/AMDVBFlash) dizine gidip çalıştırma
+yetkisi verelim:
+
+#+begin_src
+sudo chmod +x NVFlash #Nvdia için
+sudo chmod +x AMDVBFlash #AMD için
+#+end_src
+
+Nvidia için:
+
+#+begin_src
+sudo ./nvflash --save vbios.rom
+#+end_src
+
+AMD için:
+
+#+begin_src
+sudo ./amdvbflash -s 0 vbios.rom
+#+end_src
+
+- Artık vbios.rom elimizde mevcut isterseniz bilgisayarınızı tekrar
+  başlatabilirsiniz.
+- Tekrar başlattıktan sonra vbios.rom okteta uygulaması ile açalım.
+  Yüklü değilse kolayca paket yöneticinizden edinebilirsiniz.
+- vbios.rom patchelemiz gerekiyor ctrl+f ile arama ekranını açık char
+  olarak seçip VIDEO aratalım.
+- İlk U harfini gördükten sonra sol tarafında kalan imlecin hepsini
+  silelim. Farklı kaydet diyerek yeni oluşan romu patched.rom olarak
+  adlandıralım.
+- İzinleri ayarlayalım.
+
+#+begin_src
+sudo mkdir /usr/share/vgabios
+cp ./patched.rom /usr/share/vgabios/
+cd /usr/share/vgabios
+sudo chmod -R 644 patched.rom
+sudo chown yourusername:yourusername patched.rom
+#+end_src
+
+Rom eklemek: =<rom file='/usr/share/vgabios/patched.rom'/>=
+
+* Script
+#+begin_src sh
+git clone https://gitlab.com/risingprismtv/single-gpu-passthrough.git
+sudo chmod +x install_hooks.sh
+sudo ./install_hooks.sh
+#+end_src
+
+* Kaynak
+- https://gitlab.com/risingprismtv/single-gpu-passthrough
+- https://github.com/joeknock90/Single-GPU-Passthrough
+- https://github.com/lexi-src (isteğe bağlı script)

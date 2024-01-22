@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Neden ZSH kullanıyorum?</title>
+<meta name="author" content="omerkurt" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+</head>
+<body>
+<div id="preamble" class="status">
+<head>
+<meta name="color-scheme" content="light dark">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+:root {
+     color-scheme: light only;
+}
+::backdrop,:root {
+    --sans-font: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Nimbus Sans L",Roboto,"Noto Sans","Segoe UI",Arial,Helvetica,"Helvetica Neue",sans-serif;
+    --mono-font: Consolas,Menlo,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    --standard-border-radius: 5px;
+    --bg: #fff;
+    --accent-bg: #f5f7ff;
+    --text: #212121;
+    --text-light: #585858;
+    --border: #898EA4;
+    --accent:#3E3D40;
+    --accent-text: var(--bg);
+    --code: #c6a0f6;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef
+}
+
+    img,video {
+        opacity: .8;
+        margin-top:1px;
+    }
+}
+h2 > a {
+position:absolute;
+   }
+
+.published > p, .published {
+    margin-right: 1rem;
+    position:relative;
+    text-align:right;
+    margin:-3rem 0rem 0rem 0rem;
+    color:rgba(0,0,0,.4);
+}
+
+
+hr{
+    border:none;
+    height:0.5px;
+    margin:auto;
+   }
+/* Adjustments for title and date styling */
+   #preamble > header > nav > a {
+     border:none;
+     padding:0;
+   text-decoration:none;
+   margin:0 1rem 0 0;
+   }
+.outline-text-2 {
+   text-align:justify;
+   }
+.icerik > p {
+       margin: 1.5rem 0;
+}
+h2 > a {
+    text-decoration:none;
+   }
+   a:hover{
+       color:#212121;
+   }
+h2 {
+    font-weight:300;
+   }
+   h2::first-line {
+    font-weight:bold;
+   }
+   pre {
+       font-size:.8rem;
+   }
+</style>
+</head>
+<body>
+  <header>
+    <h1 style="font-weight: bold;">Ömer Kurt</h1>
+    <p style="color: #6a6a6a;">Özgür yazılım tutkunu, Emacsever</p>
+    <nav>
+      <a href="/">Ana Sayfa</a>
+      <a href="/blog/">Blog</a>
+      <a href="/Hakkımda.html">Hakkımda</a>
+      <a href="https://omerkurt.com.tr">ORUI</a>
+      <a href="/blog/rss.xml">RSS</a>
+    </nav>
+  </header>
+</body>
+</div>
+<div id="content" class="content">
+
+<div id="outline-container-orgc057903" class="outline-2">
+<h2 id="orgc057903">Neden ZSH  <br>  kullanıyorum?</h2>
+<div class="outline-text-2" id="text-orgc057903">
+<p class="published">
+Paz 19-04-2020
+</p>
+<hr>
+
+<p>
+GNU/Linux işletim sistemi kullandıysanız Bash'in ne demek olduğunu aslında biliyorsunuz. Bash kabuğu GNU/Linux işletim sisteminde ve MacOS'te varsayılan olarak gelmekte. Bash'in açılımı ise "Bourne Again Shell"dir. En popüler kabuk yada komut dili yorumlayıcıları şunlardır:
+</p>
+<ul class="org-ul">
+<li>Bash</li>
+<li>Tcsh/Csh</li>
+<li>Ksh</li>
+<li>Zsh</li>
+<li>Fish</li>
+</ul>
+
+<p>
+Benim favori kabuğumsa Zsh. Hatta bilgisayarıma format attığım zaman ilk kurduğum şeylerden biri kendisi. Oh My Zsh topluluğu harikalar yaratmış diyebilirim eklentileriyle, sadece eklenti değil <a href="https://github.com/ohmyzsh/ohmyzsh/">temalarıyla</a> da özelleştirebilirsiniz.
+</p>
+
+<p>
+Oh My Zsh indirmek için aşağıdaki komutu çalıştırabilirsiniz.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ sh -c <span style="font-style: italic;">"$(</span><span style="font-weight: bold;">curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh</span><span style="font-style: italic;">)"</span>
+</pre>
+</div>
+<p>
+Z Shell yada Zsh kabuğunu işlevsel kılan Oh My Zsh frameworkü, terminal kullanırken baya rahat gezinmemi sağlıyor. En çok kullandığım eklentilerini sırasıyla açıklayacağım.
+</p>
+</div>
+<div id="outline-container-org0dab547" class="outline-3">
+<h3 id="org0dab547"><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a></h3>
+<div class="outline-text-3" id="text-org0dab547">
+<p>
+En sevdiğim eklentilerden biri olan <b>"zsh-autosuggestions"</b> komut geçmişinize göre önerilerde bulunuyor. Birçok özelleştirmeye de imkan tanıyor.
+<img src="../img/zsh.png" alt="zsh.png">
+</p>
+</div>
+</div>
+<div id="outline-container-org936372b" class="outline-3">
+<h3 id="org936372b"><a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a></h3>
+<div class="outline-text-3" id="text-org936372b">
+<p>
+Bir diğer eklenti ise "syntax-highlighting". Komut satırına yazdığınız komutları renklendirmeye ve vurgulamaya yarıyor.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdda4c62" class="outline-3">
+<h3 id="orgdda4c62"><a href="https://github.com/wting/autojump">autojump</a></h3>
+<div class="outline-text-3" id="text-orgdda4c62">
+<p>
+Komut satırından başka bir klasöre geçişi kolaylaştırmaya yarayan bir eklenti. Dizinlere atlamak için sadece bir kez ziyaret etmeniz yeterli.
+</p>
+</div>
+</div>
+<div id="outline-container-org2be830f" class="outline-3">
+<h3 id="org2be830f"><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo">sudo</a></h3>
+<div class="outline-text-3" id="text-org2be830f">
+<p>
+Kabuktan bir paket indirdiğimizde bazen sudo yazmayı unutuyoruz. Bu eklentiyi tam 108 bin kişi starlamış. Sadece iki kez <kbd>esc</kbd> tuşuna basarak komut satırının başına `sudo` eklenecektir, bu kadar kolay.
+</p>
+</div>
+</div>
+<div id="outline-container-org7230172" class="outline-3">
+<h3 id="org7230172"><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract">extract</a></h3>
+<div class="outline-text-3" id="text-org7230172">
+<p>
+Bir sürü sıkıştırılmış arşiv türü var. Bunların hepsini dışarıyı çıkartırken farklı komutlar kullanmamız gerekiyor. "Extract" eklentisiyle, arşiv türlerinin komutlarını bilmeniz gerekmiyor. Tek bir komutla arşivinizi dışarı çıkartabileceksiniz. Toplam 35 arşiv formatını destekliyor.
+</p>
+
+<p>
+Daha fazla eklenti için şu <a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins">linke</a> bakmanızı öneririm. Temalara gelecek olursak ben <b><b>"Powerlevel9k"</b></b> temasını kullanıyorum. Bu temayı Oh My Zsh'a yüklemek için:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+</pre>
+</div>
+<p>
+Ardından <code>~/.zshrc</code> belgesine girip temanın adını yazmanız gerekiyor:
+<code>ZSH_THEME="powerlevel9k/powerlevel9k"</code>
+<img src="../img/zsh.gif" alt="zsh.gif">
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div clas="yorum">
+<script src="https://giscus.app/client.js"
+        data-repo="omerkurtdev/org-blog"
+        data-repo-id="R_kgDOLHHwuA"
+        data-category="General"
+        data-category-id="DIC_kwDOLHHwuM4CcjGB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="tr"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+<footer style="font-size:.8rem; color:#6f6f6f;">
+<br>
+<hr>
+<p>Copyright © 2020-2024 Ömer Kurt<br>
+İçeriklerim <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr">CC-BY-SA 4.0</a> lisansı altındadır.
+</p>
+<p><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6) kullanılarak oluşturuldu.<a href="https://www.gnu.org/">GNU</a>/<a href="https://www.kernel.org/">Linux</a></p>
+</footer>
+</div>
+</body>
+</html>

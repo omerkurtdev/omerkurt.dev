@@ -1,0 +1,85 @@
+:PROPERTIES:
+:ID:       daaedcf3-e739-426b-8302-5530760363f5
+:END:
+
+#+MACRO: NEWLINE @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+OPTIONS: toc:nil title:nil broken-links:auto
+#+TITLE: Fedora Silverblue değişmeyen işletim sistemi
+#+author: Ömer Kurt
+#+subtitle:  Fedora Silverblue {{{newline}}} değişmeyen işletim  {{{newline}}} sistemi
+#+DATE: <2022-05-10>
+* Fedora Silverblue {{{newline}}} değişmeyen işletim {{{newline}}} sistemi
+#+ATTR_HTML: :class published
+{{{date(%a %d-%m-%Y)}}}
+-----
+
+Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını düşüneceksiniz ilk bakışta. Terminali açıp "dnf update" yazana kadar. Silverblue dağıtımı dnf paket yöneticisi ile gelmez. Onun yerine rpm-ostree paket yöneticisi ile gelir. rpm-ostree ile her güncelleme, kaldırma yada yükleme yaptıktan sonra sisteminizi yeniden başlatmanızı isteyecek, diğer dağıtımlardan sonra bu durum bana garip gelmişti. Flatpak yüklü olarak geliyor, Flatpak üzerinden istediğiniz uygulamayı yüklediğinizde tekrar başlatmanıza gerek yok sisteminizin.
+* Immutable {{{newline}}} nedir?
+#+begin_comment
+Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını düşüneceksiniz ilk bakışta. Terminali açıp "dnf update" yazana kadar. Silverblue dağıtımı dnf paket yöneticisi ile gelmez. Onun yerine rpm-ostree paket yöneticisi ile gelir. rpm-ostree ile her güncelleme, kaldırma yada yükleme yaptıktan sonra sisteminizi yeniden başlatmanızı isteyecek, diğer dağıtımlardan sonra bu durum bana garip gelmişti. Flatpak yüklü olarak geliyor, Flatpak üzerinden istediğiniz uygulamayı yüklediğinizde tekrar başlatmanıza gerek yok sisteminizin.
+#+end_comment
+Immutable kavramını biraz açalım, değişmeyen işletim sistemi derken neyin kastedildiğinden bahsedelim.
+Kök dosya sistemi salt-okunur olarak gelir. Bu durum sisteminizde sizden izinsiz dosya değiştirmenin yada dosya yazmanın önüne geçer. Kurduğunuz her paket sisteminizden bağımsız katman üzerinde çalışır. Bilgisayarınızı bootlarken istediğiniz katmanlar arasında geçiş yapabilirsiniz. Kök dosya sistemini değiştirmenin en güzel yolu rpm-ostree paket yöneticisini kullanmak. Sisteminiz istenmedik bir şekilde bozulursa kolayca en son deployment'a geri dönebilirsiniz.
+
+rpm-ostree komutunu kullanarak bir paket yüklemek:
+#+begin_src
+$ sudo rpm-ostree install "paket_adi"
+#+end_src
+Bir önceki deployment'a geri dönmek:
+#+begin_src
+$ sudo rpm-ostree roolback
+#+end_src
+* Toolbox
+Fedora Silverblue gibi immutable dağıtımlarda olması gereken güzel projelerden bir tanesi. Dağıtımınız içinde istediğiniz birçok dağıtıma ait olan imajları kullanarak konteyner oluşturmanıza olanak tanır. Podman'le birlikte çalışır. Konteyner içine yüklediğiniz uygulamaları ister grafik arayüz, ister cli ile çalıştırabilirsiniz. Ana sisteminiz(host) temiz kalmasını sağlar, istenmedik bir durum oluşursa kolayca kaldırabilirsiniz.
+*** Toolbox konteyner oluşturma
+Fedoranın en son imajını yükleyerek konteynerı size hazır hale getirir.
+#+BEGIN_SRC shell
+$ toolbox create
+#+END_SRC
+
+Yeni oluşan konteynerın içine girmenize yarar. Birden fazla konteyner varsa '-c' parametresi ile konteyner adını girip spesifik konteynerınızı yönetebilirsiniz.
+#+BEGIN_SRC shell
+$ toolbox enter
+$ toolbox enter -c "konteyner_adi"
+#+END_SRC
+
+Host sisteminizden konteyner girmeden uygulama çalıştırmak için:
+#+BEGIN_SRC shell
+$ toolbox run -c "konteyner_adi" "uygulama_adi"
+#+END_SRC
+#+RESULTS:
+
+*** Toolbox ile Ubuntu konteynerı çalıştırma
+Toolbox ile Ubuntu'nun lts sürümlerini çalıştırmak isterseniz resmi olmayan bir podman imajı. Şu versiyonlar mevcut: 16.04, 18.04, 20.04, 21.10
+#+begin_src shell
+# Clone the Jmennius branch
+$ git clone --single-branch --branch introduce-ubuntu-lts-images https://github.com/Jmennius/toolbox ubuntu-toolbox
+
+#Build the image using podman (or dnf install podman-docker to use docker command with podman)
+$ podman build -t toolbox-ubuntu:18.04 ubuntu-toolbox/images/ubuntu/18.04
+
+# Create toolbox container from the built image
+$ toolbox create --container my_ubuntu_18_04 --image toolbox-ubuntu:18.04
+
+Created container: my_ubuntu_18_04
+Enter with: toolbox enter my_ubuntu_18_04
+#+end_src
+*** Toolbox ile Arch konteynerı çalıştırma
+Toolbox resmi olarak desteklemiyor fakat yinede Toolbox için Arch imajı istiyorsanız şu komutları takip edin:
+#+begin_src shell
+$ git clone --single-branch --branch arch-image https://github.com/erazemk/toolbox.git arch-toolbox
+$ podman build -t toolbox-arch arch-toolbox/images/archlinux
+$ toolbox create --container archlinux --image toolbox-arch
+
+Created container: archlinux
+Enter with: toolbox enter archlinux
+#+end_src
+-----
+Toolbox alternatifi bir projeden daha bahsetmek istiyorum kısaca. Projenin adı [[https://github.com/89luca89/distrobox][distrobox]]. Toolbox Archlinux ve Fedora gibi birkaç dağıtımı desteklerken, distrobox daha fazla dağıtımı ve konteynerı desktekliyor. Birçok komutu toolbox ile aynı hatta ekstrası var mesela "distrobox-export" komutunu kullanarak konteyner içindeki uygulamanızı host sisteminize aktarır. Daha fazla detay için projenin github sayfasını göz gezdirebilirsiniz.
+
+* Kaynak
+-----
+1. Fedora Project. Updates and Rollbacks. (2 Mayıs 2022). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: [[https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/][https://docs.fedoraproject.org]] | [[https://web.archive.org/web/20220504154831/https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/][Arşiv]]
+2. Tomáš Popela. What is Silverblue? (12 Temmuz 2019). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: [[https://fedoramagazine.org/what-is-silverblue/][https://fedoramagazine.org]] | [[https://web.archive.org/web/20220504163927/https://fedoramagazine.org/what-is-silverblue/][Arşiv]]
+3. JayDoubleu. Can I make use of other containers like debian or arch. (3 Ocak 2021). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: [[https://discussion.fedoraproject.org/t/can-i-make-use-of-other-containers-like-debian-or-arch/25468/10][https://discussion.fedoraproject.org]] | [[https://web.archive.org/web/20220504164558/https://discussion.fedoraproject.org/t/can-i-make-use-of-other-containers-like-debian-or-arch/25468/10][Arşiv]]
+

@@ -1,0 +1,21 @@
+#+OPTIONS: toc:nil title:nil
+#+title: Hakkımda
+
+* Hakkımda
+Merhaba, ben Ömer Kurt, özgür yazılım tutkunu yazılım geliştiricisiyim. En sevdiğim dil Lisp. Sadece özgür yazılıma tutkum yok, kamp yapmayı çok severim blogumda da bahsedeceğim yeri geldiğinde.  Pamukkale Üniversitesi Yönetim Bilişim Sistemleri bölümünden mezun oldum.
+
+Burası kişisel bir alanım. Sadece yazılım üzerine değil izlediğim film, dizi hakkındaki düşüncelerimden, gezdiğim yerlerden de bahsedeceğim.
+
+Email üzerinden iletişime geçmeyi tercih ediyorum. Blog yazılarım hakkında soru ve görüşleriniz varsa yorum kısmında belirtebilirsiniz.
+Email adresim [[mailto:mail@omerkurt.dev][mail@omerkurt.dev]]. GPG kullanıyorsanız [[file:omerkurt.pgp][public anahtarımı]] ekleyebilirsiniz.
+
+
+Blogu hazırlarken birçok org-mode bloggerlarından ilham alarak hazırladım. İlham aldıklarıma aşağıdaki listeden ulaşabilirsiniz.
+
+- https://nicolas.petton.fr/
+- https://taingram.org/blog/
+- https://systemcrafters.net/
+
+* Link
+- Github [[https://github.com/omerkurtdev][omerkurtdev]]
+- Twitter [[https://twitter.com/omerkurtdev][omerkurtdev]]

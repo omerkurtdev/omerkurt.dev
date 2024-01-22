@@ -1,0 +1,17 @@
+#+TITLE: Ana Sayfa
+#+OPTIONS: toc:nil num:nil title:nil
+#+MACRO: NEWLINE @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="custom.css"/>
+* ORUI{{{newline}}}Graph
+Beynimde dönüp dolaşan notlarıma ORUI linkinden ulaşabilirsiniz. Bazı yazılarımı blog kategorisine sokmadığım için en mantıklı yerin ORUI olacağını düşündüm. Brave üzerinden girerken Shields özelliği soruna neden oluyor, Firefox ile girmenizi öneriyorum yada Sheilds özelliğini kapatabilirsiniz.
+** Son{{{newline}}}Yazılarım
+- [[file:blog/gpu.org][GPU Passthrough kurulumu]]
+- [[file:blog/Neden-org-mode.org][Neden org-mode?]]
+
+** Youtube{{{newline}}}Videolar
+- [[https://www.youtube.com/watch?v=UCEGDJJsFPs][GPU Passthrough]]
+- [[https://www.youtube.com/watch?v=Di8ALt0KFb0][Neden org-mode?]]
+* Fikirler{{{newline}}}Projeler
+- Son zamanlarda whisper.cpp ile ilgileniyorum mpv media player üzerinden ister local ister streaming olarak subtitle oluşturma üzerine uğraşıyorum. Bununla alakalı video fikri var aklımda.
+- Elisp ve Lisp programlama dillerini öğrenmeye başladım. Mpv ile alakalı eklenti oluşturduktan sonra yazılarım bu diller hakkında olacak.
+- Orange pi 5 plus sipariş ettim bunla alakalı çok güzel planlarım var şimdilik. Yakında ORUI üzerinden paylaşacağım.

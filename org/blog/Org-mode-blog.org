@@ -1,0 +1,170 @@
+:PROPERTIES:
+:ID:       d1cc5624-b683-42e4-b3e3-8b267b48e835
+:END:
+
+#+MACRO: NEWLINE @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+title: Org Mode Blog
+#+subtitle: Org-mode{{{newline}}}Blogum
+#+OPTIONS: toc:nil title:nil broken-links:auto
+#+DATE:<2023-01-08>
+
+* Org-mode {{{newline}}} Blogum
+#+begin_comment
+Blogumu Hugo'dan org-mode'a taşıdım.
+#+end_comment
+
+#+ATTR_HTML: :class published
+{{{date(%a %d-%m-%Y)}}}
+-----
+
+Blogumu org-mode taşıdım. Birkaç aydır notlarımı zaten Emacs üzerinden tutuyordum, [[id:4a1f02f7-8d63-4ea7-93ac-15298a027e89][Hugo]] markdown olarak gayet kullanışlı framework ama org-mode alışınca büyülendim diyebilirim.
+
+Emacs'e geçtiğimden beri birçok çalışma akışımı ona göre şekillendirdim. Birçok kişisel verimi, LaTeX yazılarımı kolayca export etmemi sağlayan mükemmel araç. Org-mode ile ilgili yazımı bir sonraki postumda daha detaylı anlatacağım.
+
+Org-mode için kullandığım elisp kodu:
+
+#+begin_src elisp
+(require 'package)
+(setq package-user-dir (expand-file-name "./.packages"))
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(package-install 'htmlize)
+(require 'ox-publish)
+
+(defun file-contents (file)
+  (with-temp-buffer
+    (insert-file-contents file)
+    (buffer-string)))
+
+(setq org-export-html-date-format-string "%Y-%m-%d")
+(setq html-preamble (file-contents "./org/html/preamble.html")
+      html-postamble(file-contents "./org/html/postamble.html"))
+
+(defun m/org-publish-org-sitemap (title list)
+  "Sitemap generation function."
+  (concat "#+TITLE: Blog yazılarım ve notlarım\n"
+          "#+MACRO: NEWLINE @@latex:\\@@ @@html:<br>@@ @@ascii:|@@ \n\n"
+          "#+OPTIONS: toc:nil num:nil title:nil \n"
+          (org-list-to-subtree list)))
+
+(defun get-subtitle (file project)
+  "Find the title of FILE in PROJECT."
+  (let ((file (org-publish--expand-file-name file project)))
+    (or (org-publish-cache-get-file-property file :subtitle nil t)
+	(let* ((parsed-title (org-publish-find-property file :subtitle project 'html))
+	       (title
+		(if parsed-title
+		    ;; Remove property so that the return value is
+		    ;; cache-able (i.e., it can be `read' back).
+		    (org-no-properties
+		     (org-element-interpret-data parsed-title))
+		  (file-name-nondirectory (file-name-sans-extension file)))))
+	  (org-publish-cache-set-file-property file :subtitle title)))))
+(defun loomcom/get-preview (filename)
+  "Get a preview of the content from an Org file."
+  (with-temp-buffer
+    (insert-file-contents (concat "org/blog/" filename))
+    (goto-char (point-min))
+    (let ((marker-start (or (and (re-search-forward "^#\\+begin_comment$" nil t)
+                                 (match-end 0))
+                            (buffer-size)))
+          (marker-end (or (and (re-search-forward "^#\\+end_comment$" nil t)
+                               (match-beginning 0))
+                          (buffer-size))))
+      (when (= marker-start (buffer-size))
+        (goto-char (point-min))
+        (setq marker-start (or (and (re-search-forward "^[^#]" nil t)
+                                    (match-beginning 0))
+                               (buffer-size))
+              marker-end (progn (forward-paragraph) (point))))
+      (list (not (= marker-end (buffer-size)))
+            (string-trim (buffer-substring marker-start marker-end))))))
+
+(defun loomcom/sitemap-entry (entry style project)
+  "Sitemap (Blog Main Page) Entry Formatter."
+  (when (not (directory-name-p entry))
+    (format (concat "[[file:%s][%s]]\n"
+                    "#+BEGIN_icerik\n"
+                    "#+BEGIN_published\n"
+                    "%s\n"
+                    "#+END_published\n\n"
+                    "-----\n"
+                    "%s\n"
+                    "#+END_icerik\n")
+            entry
+            (get-subtitle entry project)
+            (format-time-string "%d-%m-%Y" (org-publish-find-date entry project))
+            (let* ((preview (loomcom/get-preview entry))
+                   (needs-more (car preview))
+                   (preview-text (cadr preview)))
+              (if needs-more
+                  (format (concat "%s\n\n"
+                                  "#+BEGIN_morelink\n"
+                                  "[[file:%s][Daha fazla...]]\n"
+                                  "#+END_morelink\n")
+                          preview-text entry)
+                (format "%s" preview-text))))))
+
+
+(setq org-html-validation-link nil
+      org-html-head-include-scripts nil
+      org-html-head-include-default-style nil
+      org-html-head "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />")
+
+
+(setq org-publish-project-alist
+      `(("pages"
+         :base-directory "org"
+         :base-extension "org"
+         :language "tr"
+         :recursive nil
+         :with-author nil
+         :with-creator nil
+         :with-date t
+         :section-numbers nil
+         :time-stamp-file nil
+         :html-doctype "html5"
+         :html-preamble ,html-preamble
+         :html-html5-fancy t
+         :publishing-directory "html/"
+         :publishing-function org-html-publish-to-html)
+        ("blog"
+         :section-numbers nil
+         :time-stamp-file nil
+         :sitemap-function m/org-publish-org-sitemap
+         :html-html5-fancy t
+         :language "tr"
+         :html-doctype "html5"
+         :base-directory "org/blog"
+         :base-extension "org"
+         :publishing-directory "html/blog/"
+         :publish-function org-html-publish-to-html
+         :auto-sitemap t
+         :sitemap-title "blog posts"
+         :html-preamble ,html-preamble
+         :html-postamble ,html-postamble
+         :sitemap-filename "index.org"
+         :sitemap-sort-files anti-chronologically
+         :sitemap-format-entry loomcom/sitemap-entry)
+        ("static"
+         :base-directory "org"
+         :base-extension "css\\|txt\\|jpg\\|gif\\|png"
+         :recursive t
+         :publishing-directory  "html/"
+         :publishing-function org-publish-attachment)
+
+        ("omerkurt.dev" :components ("pages" "blog" "static" ))))
+(org-publish-remove-all-timestamps)
+(org-publish "omerkurt.dev" t)
+
+(message "build complete!")
+
+;;; build-site.el ends here
+#+end_src
+
+Blog post preview için Seth Morabito'nun [[https://loomcom.com/blog/simplifying-my-blog/][kodundan]] yararlandım kendisine teşekkür ederim.
