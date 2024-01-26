@@ -14,8 +14,8 @@
   <link>https://omerkurt.dev/blog/</link>
   <description><![CDATA[]]></description>
   <language>tr</language>
-  <pubDate>Mon, 22 Jan 2024 13:12:25 +0300</pubDate>
-  <lastBuildDate>Mon, 22 Jan 2024 13:12:25 +0300</lastBuildDate>
+  <pubDate>Fri, 26 Jan 2024 15:38:55 +0300</pubDate>
+  <lastBuildDate>Fri, 26 Jan 2024 15:38:55 +0300</lastBuildDate>
   <generator>Emacs 29.1 Org-mode 9.6.6</generator>
   <webMaster>omerkurt@omerkurt.dev (Omer Kurt)</webMaster>
   <image>
@@ -31,13 +31,13 @@
     <guid isPermaLink="false">https://omerkurt.dev/blog/gpu.html</guid>
     <pubDate>Wed, 17 Jan 2024 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org657cae0">
+    <description><![CDATA[<div class="published" id="org94d2013">
     <p>
     GPU passthrough bir GPU direkt olarak sanal makineye sunmasına yarayan
     bir tekniktir. Peki avantajı ne?
     </p>
 
-    <div class="morelink" id="org6c38b42">
+    <div class="morelink" id="org97d3f64">
     <p>
     <a href="gpu.html">Daha fazla...</a>
     </p>
@@ -55,12 +55,12 @@
     <guid isPermaLink="false">https://omerkurt.dev/blog/Neden-org-mode.html</guid>
     <pubDate>Sun, 14 Jan 2024 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org3c93e6c">
+    <description><![CDATA[<div class="published" id="orgb6d05f9">
     <p>
     Neden org-mode markdown'a göre çok iyi? Benim için bir çok nedeni var ve sadece o nedenlerden birkaçını göstermem bile org-mode bakış açınızı değiştirecek. Markdown'a çok alıştık o da mükemmel araçlardan bir tanesi fakat org-mode kadar değil.
     </p>
 
-    <div class="morelink" id="org7993a0c">
+    <div class="morelink" id="org32e822a">
     <p>
     <a href="Neden-org-mode.html">Daha fazla...</a>
     </p>
@@ -78,12 +78,12 @@
     <guid isPermaLink="false">https://omerkurt.dev/blog/Org-mode-blog.html</guid>
     <pubDate>Sun, 08 Jan 2023 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org40832e5">
+    <description><![CDATA[<div class="published" id="org97f8510">
     <p>
     Blogumu Hugo'dan org-mode'a taşıdım.
     </p>
 
-    <div class="morelink" id="orgc686321">
+    <div class="morelink" id="org153f24c">
     <p>
     <a href="Org-mode-blog.html">Daha fazla...</a>
     </p>
@@ -101,12 +101,12 @@
     <guid isPermaLink="false">https://omerkurt.dev/blog/fedora-silverblue.html</guid>
     <pubDate>Tue, 10 May 2022 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org23d6eab">
+    <description><![CDATA[<div class="published" id="org1cd94b2">
     <p>
     Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını düşüneceksiniz ilk bakışta. Terminali açıp "dnf update" yazana kadar. Silverblue dağıtımı dnf paket yöneticisi ile gelmez. Onun yerine rpm-ostree paket yöneticisi ile gelir. rpm-ostree ile her güncelleme, kaldırma yada yükleme yaptıktan sonra sisteminizi yeniden başlatmanızı isteyecek, diğer dağıtımlardan sonra bu durum bana garip gelmişti. Flatpak yüklü olarak geliyor, Flatpak üzerinden istediğiniz uygulamayı yüklediğinizde tekrar başlatmanıza gerek yok sisteminizin.
     </p>
 
-    <div class="morelink" id="orge7b7e76">
+    <div class="morelink" id="org1bb0142">
     <p>
     <a href="fedora-silverblue.html">Daha fazla...</a>
     </p>
@@ -124,13 +124,13 @@
     <guid isPermaLink="false">https://omerkurt.dev/blog/zsh.html</guid>
     <pubDate>Sun, 19 Apr 2020 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="orgc7604f5">
+    <description><![CDATA[<div class="published" id="orge49ae0f">
     <p>
     <img src="../img/zsh.gif" alt="zsh.gif" />
     Bash kabuğunu uzun süre kullandıktan sonra Zsh geçme fikri vardı aklımda özellikle renklendirme, otomatik tamamlama gibi birçok eklentiye sahip Zsh kabuğundan bahsedeceğim.
     </p>
 
-    <div class="morelink" id="orgb7d8456">
+    <div class="morelink" id="org742ce0f">
     <p>
     <a href="zsh.html">Daha fazla...</a>
     </p>
@@ -148,13 +148,13 @@
     <guid isPermaLink="false">https://omerkurt.dev/blog/hugo-ile-blog-oluşturmak.html</guid>
     <pubDate>Thu, 16 Apr 2020 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="orge218d66">
+    <description><![CDATA[<div class="published" id="org48cb335">
     <p>
     <img src="../img/hugo-test.png" alt="hugo-test.png" />
     Bu yazımda sizlere Hugo ile blog kurmayı anlatacağım.
     </p>
 
-    <div class="morelink" id="orga96ff40">
+    <div class="morelink" id="org1500008">
     <p>
     <a href="hugo-ile-blog-oluşturmak.html">Daha fazla...</a>
     </p>
@@ -172,9 +172,9 @@
     <guid isPermaLink="false">https://omerkurt.dev/blog/android-linux-mu.html</guid>
     <pubDate>Fri, 20 Mar 2020 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org5dff4b5">
+    <description><![CDATA[<div class="published" id="org19f501e">
 
-    <div id="org6f3de7a" class="figure">
+    <div id="org9a35256" class="figure">
     <p><img src="https://miro.medium.com/v2/resize:fit:580/0*vCZD5lu9OKTHW_YK.jpg" alt="0*vCZD5lu9OKTHW_YK.jpg" />
     </p>
     </div>
@@ -183,7 +183,7 @@
     Bu sorunun tam bir cevabı yok aslında, yazımdan da bahsedeceğim neden cevabı olmadığını. Birçok topluluk bu konu üzerinde çokça tartıştılar. Android’in bir Linux olup olmadığını anlamak için Linux’un ne olduğunu bilmeliyiz.
     </p>
 
-    <div class="morelink" id="org19c30f5">
+    <div class="morelink" id="orgb1dc3d6">
     <p>
     <a href="android-linux-mu.html">Daha fazla...</a>
     </p>

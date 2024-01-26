@@ -2,4 +2,11 @@
 :ID:       f225f1d3-2075-4f52-9e55-35810166d0a4
 :END:
 #+title: 2024-01-21
-naber
+* MPV
+Olmazssa olmaz eklentiler
+1. https://github.com/Ajatt-Tools/mpvacious
+2. https://github.com/tomasklaen/uosc
+3. https://github.com/po5/thumbfast
+4. https://github.com/mrxdst/webtorrent-mpv-hook
+* Bonus
+https://github.com/Syncplay/syncplay

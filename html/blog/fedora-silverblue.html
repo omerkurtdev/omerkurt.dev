@@ -95,7 +95,7 @@ h2 {
     <nav>
       <a href="/">Ana Sayfa</a>
       <a href="/blog/">Blog</a>
-      <a href="/Hakkımda.html">Hakkımda</a>
+      <a href="/hakkimda.html">Hakkımda</a>
       <a href="https://omerkurt.com.tr">ORUI</a>
       <a href="/blog/rss.xml">RSS</a>
     </nav>
@@ -103,9 +103,9 @@ h2 {
 </body>
 </div>
 <div id="content" class="content">
-<div id="outline-container-orgd36ba93" class="outline-2">
-<h2 id="orgd36ba93">Fedora Silverblue  <br>  değişmeyen işletim  <br>  sistemi</h2>
-<div class="outline-text-2" id="text-orgd36ba93">
+<div id="outline-container-org9b80025" class="outline-2">
+<h2 id="org9b80025">Fedora Silverblue  <br>  değişmeyen işletim  <br>  sistemi</h2>
+<div class="outline-text-2" id="text-org9b80025">
 <p class="published">
 Sal 10-05-2022
 </p>
@@ -116,9 +116,9 @@ Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını d�
 </p>
 </div>
 </div>
-<div id="outline-container-orgb70c107" class="outline-2">
-<h2 id="orgb70c107">Immutable  <br>  nedir?</h2>
-<div class="outline-text-2" id="text-orgb70c107">
+<div id="outline-container-orgd228c92" class="outline-2">
+<h2 id="orgd228c92">Immutable  <br>  nedir?</h2>
+<div class="outline-text-2" id="text-orgd228c92">
 <p>
 Immutable kavramını biraz açalım, değişmeyen işletim sistemi derken neyin kastedildiğinden bahsedelim.
 Kök dosya sistemi salt-okunur olarak gelir. Bu durum sisteminizde sizden izinsiz dosya değiştirmenin yada dosya yazmanın önüne geçer. Kurduğunuz her paket sisteminizden bağımsız katman üzerinde çalışır. Bilgisayarınızı bootlarken istediğiniz katmanlar arasında geçiş yapabilirsiniz. Kök dosya sistemini değiştirmenin en güzel yolu rpm-ostree paket yöneticisini kullanmak. Sisteminiz istenmedik bir şekilde bozulursa kolayca en son deployment'a geri dönebilirsiniz.
@@ -138,16 +138,16 @@ $ sudo rpm-ostree roolback
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbc73c78" class="outline-2">
-<h2 id="orgbc73c78">Toolbox</h2>
-<div class="outline-text-2" id="text-orgbc73c78">
+<div id="outline-container-orgfd33699" class="outline-2">
+<h2 id="orgfd33699">Toolbox</h2>
+<div class="outline-text-2" id="text-orgfd33699">
 <p>
 Fedora Silverblue gibi immutable dağıtımlarda olması gereken güzel projelerden bir tanesi. Dağıtımınız içinde istediğiniz birçok dağıtıma ait olan imajları kullanarak konteyner oluşturmanıza olanak tanır. Podman'le birlikte çalışır. Konteyner içine yüklediğiniz uygulamaları ister grafik arayüz, ister cli ile çalıştırabilirsiniz. Ana sisteminiz(host) temiz kalmasını sağlar, istenmedik bir durum oluşursa kolayca kaldırabilirsiniz.
 </p>
 </div>
-<div id="outline-container-orgb2492a6" class="outline-4">
-<h4 id="orgb2492a6">Toolbox konteyner oluşturma</h4>
-<div class="outline-text-4" id="text-orgb2492a6">
+<div id="outline-container-orgc3498af" class="outline-4">
+<h4 id="orgc3498af">Toolbox konteyner oluşturma</h4>
+<div class="outline-text-4" id="text-orgc3498af">
 <p>
 Fedoranın en son imajını yükleyerek konteynerı size hazır hale getirir.
 </p>
@@ -175,9 +175,9 @@ Host sisteminizden konteyner girmeden uygulama çalıştırmak için:
 </div>
 </div>
 
-<div id="outline-container-orgfc1f66c" class="outline-4">
-<h4 id="orgfc1f66c">Toolbox ile Ubuntu konteynerı çalıştırma</h4>
-<div class="outline-text-4" id="text-orgfc1f66c">
+<div id="outline-container-orgbd7d1f6" class="outline-4">
+<h4 id="orgbd7d1f6">Toolbox ile Ubuntu konteynerı çalıştırma</h4>
+<div class="outline-text-4" id="text-orgbd7d1f6">
 <p>
 Toolbox ile Ubuntu'nun lts sürümlerini çalıştırmak isterseniz resmi olmayan bir podman imajı. Şu versiyonlar mevcut: 16.04, 18.04, 20.04, 21.10
 </p>
@@ -197,9 +197,9 @@ Enter with: toolbox enter my_ubuntu_18_04
 </div>
 </div>
 </div>
-<div id="outline-container-org136dbfe" class="outline-4">
-<h4 id="org136dbfe">Toolbox ile Arch konteynerı çalıştırma</h4>
-<div class="outline-text-4" id="text-org136dbfe">
+<div id="outline-container-org86efe18" class="outline-4">
+<h4 id="org86efe18">Toolbox ile Arch konteynerı çalıştırma</h4>
+<div class="outline-text-4" id="text-org86efe18">
 <p>
 Toolbox resmi olarak desteklemiyor fakat yinede Toolbox için Arch imajı istiyorsanız şu komutları takip edin:
 </p>
@@ -220,9 +220,9 @@ Toolbox alternatifi bir projeden daha bahsetmek istiyorum kısaca. Projenin adı
 </div>
 </div>
 
-<div id="outline-container-org95b7cda" class="outline-2">
-<h2 id="org95b7cda">Kaynak</h2>
-<div class="outline-text-2" id="text-org95b7cda">
+<div id="outline-container-org287bee1" class="outline-2">
+<h2 id="org287bee1">Kaynak</h2>
+<div class="outline-text-2" id="text-org287bee1">
 <hr>
 <ol class="org-ol">
 <li>Fedora Project. Updates and Rollbacks. (2 Mayıs 2022). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: <a href="https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/">https://docs.fedoraproject.org</a> | <a href="https://web.archive.org/web/20220504154831/https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/">Arşiv</a></li>

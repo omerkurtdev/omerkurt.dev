@@ -29,7 +29,7 @@
 
 (package-install 'htmlize)
 (require 'ox-publish)
-
+(package-install 'ox-rss)
 (defun file-contents (file)
   (with-temp-buffer
     (insert-file-contents file)
@@ -171,12 +171,8 @@ project."
   "Publish PLIST to RSS when FILENAME is rss.org.
 DIR is the location of the output."
   (if (equal "rss.org" (file-name-nondirectory filename))
-      (progn
-        (message "Publishing RSS feed...") ; Debug çıktısı eklendi
-        (message "PLIST: %s" plist)        ; Debug çıktısı eklendi
-        (message "FILENAME: %s" filename)  ; Debug çıktısı eklendi
-        (message "DIR: %s" dir)            ; Debug çıktısı eklendi
-        (org-rss-publish-to-rss plist filename dir))))
+      (org-rss-publish-to-rss plist filename dir)))
+
 
 (setq org-publish-project-alist
       `(("pages"
@@ -237,7 +233,7 @@ DIR is the location of the output."
          :sitemap-format-entry loomcom/sitemap-entry-rss)
         ("static"
          :base-directory "org"
-         :base-extension "css\\|txt\\|jpg\\|gif\\|png\\|pgp"
+         :base-extension "css\\|txt\\|jpg\\|gif\\|png\\|gpg"
          :recursive t
          :publishing-directory  "html/"
          :publishing-function org-publish-attachment)
@@ -245,6 +241,14 @@ DIR is the location of the output."
         ("omerkurt.dev" :components ("pages" "blog" "static" "posts-rss" ))))
 (org-publish-remove-all-timestamps)
 (org-publish "omerkurt.dev" t)
+
+;; Silmek istediğiniz belgenin tam yolunu belirtin
+(setq file-to-delete "org/blog/rss.org")
+
+;; Belgeyi sil
+(if (file-exists-p file-to-delete)
+    (delete-file file-to-delete)
+  (message "Belge bulunamadı: %s" file-to-delete))
 
 (message "build complete!")
 
