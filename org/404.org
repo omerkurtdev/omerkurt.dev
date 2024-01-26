@@ -1,2 +1,2 @@
 #+title: 404
-Aradığın sayfa bulunamadı! Ana sayfaya gitmek için [[/index.html][buraya]] tıklayın.
+Aradığın sayfa bulunamadı! Ana sayfaya gitmek için [[https://omerkurt.dev][buraya]] tıklayın.
