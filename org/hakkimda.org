@@ -7,7 +7,7 @@ Merhaba, ben Ömer Kurt, özgür yazılım tutkunu yazılım geliştiricisiyim. 
 Burası kişisel bir alanım. Sadece yazılım üzerine değil izlediğim film, dizi hakkındaki düşüncelerimden, gezdiğim yerlerden de bahsedeceğim.
 
 Email üzerinden iletişime geçmeyi tercih ediyorum. Blog yazılarım hakkında soru ve görüşleriniz varsa yorum kısmında belirtebilirsiniz.
-Email adresim [[mailto:mail@omerkurt.dev][mail@omerkurt.dev]]. GPG kullanıyorsanız [[file:omerkurt.gpg][public anahtarımı]] ekleyebilirsiniz.
+Email adresim [[mailto:omer@omerkurt.dev][omer@omerkurt.dev]]. GPG kullanıyorsanız [[file:omer@omerkurt.dev.asc][public anahtarımı]] ekleyebilirsiniz.
 
 
 Blogu hazırlarken birçok org-mode bloggerlarından ilham alarak hazırladım. İlham aldıklarıma aşağıdaki listeden ulaşabilirsiniz.
