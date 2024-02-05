@@ -104,9 +104,9 @@ h2 {
 </div>
 <div id="content" class="content">
 
-<div id="outline-container-org65d3b7c" class="outline-2">
-<h2 id="org65d3b7c">GPU Passthrough <br> QEMU/KVM <br> Kurulumu</h2>
-<div class="outline-text-2" id="text-org65d3b7c">
+<div id="outline-container-orgfd039d9" class="outline-2">
+<h2 id="orgfd039d9">GPU Passthrough <br> QEMU/KVM <br> Kurulumu</h2>
+<div class="outline-text-2" id="text-orgfd039d9">
 <p class="published">
 Çrş 17-01-2024
 </p>
@@ -149,9 +149,9 @@ GPU passthrough iyi bir seçim olacaktır.
 </div>
 </div>
 
-<div id="outline-container-org371b3c7" class="outline-2">
-<h2 id="org371b3c7">BIOS Ayarı</h2>
-<div class="outline-text-2" id="text-org371b3c7">
+<div id="outline-container-org08dcd9f" class="outline-2">
+<h2 id="org08dcd9f">BIOS Ayarı</h2>
+<div class="outline-text-2" id="text-org08dcd9f">
 <p>
 Bilgisayarınız AMD işlemcili ise <b>IOMMU</b>, <b>NX mode</b>, <b>SVM mode</b> aktif
 etmelisiniz. Eğer Intel işlemcili bilgisayarınız varsa <b>VT-D</b> ve <b>VT-X</b>
@@ -201,9 +201,9 @@ Ek olarak Distronuz UEFI modunda yüklenmiş olmalıdır.
 </div>
 </div>
 
-<div id="outline-container-org445e5d8" class="outline-2">
-<h2 id="org445e5d8">GRUB ayarı</h2>
-<div class="outline-text-2" id="text-org445e5d8">
+<div id="outline-container-org259a328" class="outline-2">
+<h2 id="org259a328">GRUB ayarı</h2>
+<div class="outline-text-2" id="text-org259a328">
 <table>
 
 
@@ -250,9 +250,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 </div>
 </div>
 
-<div id="outline-container-org75e8d61" class="outline-2">
-<h2 id="org75e8d61">IOMMU Gruplama</h2>
-<div class="outline-text-2" id="text-org75e8d61">
+<div id="outline-container-org7eac2e9" class="outline-2">
+<h2 id="org7eac2e9">IOMMU Gruplama</h2>
+<div class="outline-text-2" id="text-org7eac2e9">
 <p>
 GPU grubu hakkında bilgi almamız gerekecek.
 </p>
@@ -274,9 +274,9 @@ Scripti kaydedip çalıştıralım. GPU grubunu bulalım.
 </div>
 </div>
 
-<div id="outline-container-org468bad3" class="outline-2">
-<h2 id="org468bad3">QEMU ve Libvirt kurulumu</h2>
-<div class="outline-text-2" id="text-org468bad3">
+<div id="outline-container-orge7f8438" class="outline-2">
+<h2 id="orge7f8438">QEMU ve Libvirt kurulumu</h2>
+<div class="outline-text-2" id="text-orge7f8438">
 <p>
 Arch için:
 </p>
@@ -286,9 +286,9 @@ sudo pacman -S virt-manager qemu vde2 ebtables iptables-nft nftables dnsmasq bri
 </pre>
 </div>
 
-<div id="outline-container-org8e79802" class="outline-3">
-<h3 id="org8e79802">libvirt.conf</h3>
-<div class="outline-text-3" id="text-org8e79802">
+<div id="outline-container-org5853d20" class="outline-3">
+<h3 id="org5853d20">libvirt.conf</h3>
+<div class="outline-text-3" id="text-org5853d20">
 <p>
 <b>/etc/libvirt/libvirtd.conf</b> belgesine girip başındaki <code>#</code> işaretini
 kaldıralım
@@ -301,9 +301,9 @@ unix_sock_rw_perms = "0770"
 </div>
 </div>
 
-<div id="outline-container-orga43576b" class="outline-3">
-<h3 id="orga43576b">Loglama</h3>
-<div class="outline-text-3" id="text-orga43576b">
+<div id="outline-container-org531b005" class="outline-3">
+<h3 id="org531b005">Loglama</h3>
+<div class="outline-text-3" id="text-org531b005">
 <p>
 En alt satıra loglarımızı kayıt altına almak için aşağıdaki satırları
 ekleyelim
@@ -316,9 +316,9 @@ log_outputs="2:file:/var/log/libvirt/libvirtd.log"
 </div>
 </div>
 
-<div id="outline-container-org5123572" class="outline-3">
-<h3 id="org5123572">Libvirt grubunu düzenleme</h3>
-<div class="outline-text-3" id="text-org5123572">
+<div id="outline-container-org1faae00" class="outline-3">
+<h3 id="org1faae00">Libvirt grubunu düzenleme</h3>
+<div class="outline-text-3" id="text-org1faae00">
 <p>
 Kullanıcı adımızı libvirt grubuna ekleyelim
 </p>
@@ -338,9 +338,9 @@ sudo systemctl start libvirtd
 </div>
 </div>
 
-<div id="outline-container-orgba7635a" class="outline-3">
-<h3 id="orgba7635a">qemu.conf</h3>
-<div class="outline-text-3" id="text-orgba7635a">
+<div id="outline-container-org8eb57e9" class="outline-3">
+<h3 id="org8eb57e9">qemu.conf</h3>
+<div class="outline-text-3" id="text-org8eb57e9">
 <p>
 <b>/etc/libvirt/qemu.conf</b> belgesinin içine girip sudo yazan ifadeyi
 kaldırıp kendi kullanıcı adımızı yazalım:
@@ -357,9 +357,9 @@ Kaydedip libvirtd yeniden başlatalım: <code>sudo systemctl restart libvirtd</c
 </div>
 </div>
 
-<div id="outline-container-orgdfb185f" class="outline-3">
-<h3 id="orgdfb185f">Network</h3>
-<div class="outline-text-3" id="text-orgdfb185f">
+<div id="outline-container-org890abe5" class="outline-3">
+<h3 id="org890abe5">Network</h3>
+<div class="outline-text-3" id="text-org890abe5">
 <pre class="example">
 sudo virsh net-autostart default
 sudo virsh net-start default
@@ -368,9 +368,9 @@ sudo virsh net-start default
 </div>
 </div>
 
-<div id="outline-container-org778e759" class="outline-2">
-<h2 id="org778e759">Virtual Manager</h2>
-<div class="outline-text-2" id="text-org778e759">
+<div id="outline-container-org07468ed" class="outline-2">
+<h2 id="org07468ed">Virtual Manager</h2>
+<div class="outline-text-2" id="text-org07468ed">
 <p>
 Gerekli olan:
 </p>
@@ -392,18 +392,18 @@ bağlı)</li>
 </div>
 </div>
 
-<div id="outline-container-org8bb72da" class="outline-2">
-<h2 id="org8bb72da">ROM Hazırlama</h2>
-<div class="outline-text-2" id="text-org8bb72da">
+<div id="outline-container-org3bc5ca1" class="outline-2">
+<h2 id="org3bc5ca1">ROM Hazırlama</h2>
+<div class="outline-text-2" id="text-org3bc5ca1">
 <p>
 Rom hazırlamak için birkaç yöntem var. Ben Dumping yöntemine göre devam
 edeceğim.
 </p>
 </div>
 
-<div id="outline-container-orgfdcc78d" class="outline-3">
-<h3 id="orgfdcc78d">Dumping</h3>
-<div class="outline-text-3" id="text-orgfdcc78d">
+<div id="outline-container-org9fbfb36" class="outline-3">
+<h3 id="org9fbfb36">Dumping</h3>
+<div class="outline-text-3" id="text-org9fbfb36">
 <p>
 Nvidia için:
 <a href="https://www.techpowerup.com/download/nvidia-nvflash/">NVFlash</a> AMD
@@ -508,9 +508,9 @@ Rom eklemek: <code>&lt;rom file</code>'/usr/share/vgabios/patched.rom'/&gt;=
 </div>
 </div>
 
-<div id="outline-container-orgdf7f2e9" class="outline-2">
-<h2 id="orgdf7f2e9">Script</h2>
-<div class="outline-text-2" id="text-orgdf7f2e9">
+<div id="outline-container-org5a5557f" class="outline-2">
+<h2 id="org5a5557f">Script</h2>
+<div class="outline-text-2" id="text-org5a5557f">
 <div class="org-src-container">
 <pre class="src src-sh">git clone https://gitlab.com/risingprismtv/single-gpu-passthrough.git
 sudo chmod +x install_hooks.sh
@@ -520,9 +520,9 @@ sudo ./install_hooks.sh
 </div>
 </div>
 
-<div id="outline-container-org177a3be" class="outline-2">
-<h2 id="org177a3be">Kaynak</h2>
-<div class="outline-text-2" id="text-org177a3be">
+<div id="outline-container-orgcc7b1c6" class="outline-2">
+<h2 id="orgcc7b1c6">Kaynak</h2>
+<div class="outline-text-2" id="text-orgcc7b1c6">
 <ul class="org-ul">
 <li><a href="https://gitlab.com/risingprismtv/single-gpu-passthrough">https://gitlab.com/risingprismtv/single-gpu-passthrough</a></li>
 <li><a href="https://github.com/joeknock90/Single-GPU-Passthrough">https://github.com/joeknock90/Single-GPU-Passthrough</a></li>

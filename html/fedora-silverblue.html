@@ -105,9 +105,9 @@ h2 {
 <header>
 <h1 class="title">Fedora Silverblue &lt;b&gt;</h1>
 </header>
-<div id="outline-container-orgcd94458" class="outline-2">
-<h2 id="orgcd94458">Immutable nedir?</h2>
-<div class="outline-text-2" id="text-orgcd94458">
+<div id="outline-container-orgf38d783" class="outline-2">
+<h2 id="orgf38d783">Immutable nedir?</h2>
+<div class="outline-text-2" id="text-orgf38d783">
 <p>
 Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını düşüneceksiniz ilk bakışta. Terminali açıp "dnf update" yazana kadar. Silverblue dağıtımı dnf paket yöneticisi ile gelmez. Onun yerine rpm-ostree paket yöneticisi ile gelir. rpm-ostree ile her güncelleme, kaldırma yada yükleme yaptıktan sonra sisteminizi yeniden başlatmanızı isteyecek, diğer dağıtımlardan sonra bu durum bana garip gelmişti. Flatpak yüklü olarak geliyor, Flatpak üzerinden istediğiniz uygulamayı yüklediğinizde tekrar başlatmanıza gerek yok sisteminizin.
 Immutable kavramını biraz açalım, değişmeyen işletim sistemi derken neyin kastedildiğinden bahsedelim.
@@ -128,16 +128,16 @@ $ sudo rpm-ostree roolback
 </pre>
 </div>
 </div>
-<div id="outline-container-org98be3ad" class="outline-2">
-<h2 id="org98be3ad">Toolbox</h2>
-<div class="outline-text-2" id="text-org98be3ad">
+<div id="outline-container-org8c096a9" class="outline-2">
+<h2 id="org8c096a9">Toolbox</h2>
+<div class="outline-text-2" id="text-org8c096a9">
 <p>
 Fedora Silverblue gibi immutable dağıtımlarda olması gereken güzel projelerden bir tanesi. Dağıtımınız içinde istediğiniz birçok dağıtıma ait olan imajları kullanarak konteyner oluşturmanıza olanak tanır. Podman'le birlikte çalışır. Konteyner içine yüklediğiniz uygulamaları ister grafik arayüz, ister cli ile çalıştırabilirsiniz. Ana sisteminiz(host) temiz kalmasını sağlar, istenmedik bir durum oluşursa kolayca kaldırabilirsiniz.
 </p>
 </div>
-<div id="outline-container-org9ec3316" class="outline-3">
-<h3 id="org9ec3316">Toolbox konteyner oluşturma</h3>
-<div class="outline-text-3" id="text-org9ec3316">
+<div id="outline-container-org14a8e09" class="outline-3">
+<h3 id="org14a8e09">Toolbox konteyner oluşturma</h3>
+<div class="outline-text-3" id="text-org14a8e09">
 <p>
 Fedoranın en son imajını yükleyerek konteynerı size hazır hale getirir.
 </p>
@@ -164,9 +164,9 @@ Host sisteminizden konteyner girmeden uygulama çalıştırmak için:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf16050b" class="outline-3">
-<h3 id="orgf16050b">Toolbox ile Ubuntu konteynerı çalıştırma</h3>
-<div class="outline-text-3" id="text-orgf16050b">
+<div id="outline-container-org1a33c55" class="outline-3">
+<h3 id="org1a33c55">Toolbox ile Ubuntu konteynerı çalıştırma</h3>
+<div class="outline-text-3" id="text-org1a33c55">
 <p>
 Toolbox ile Ubuntu'nun lts sürümlerini çalıştırmak isterseniz resmi olmayan bir podman imajı. Şu versiyonlar mevcut: 16.04, 18.04, 20.04, 21.10
 </p>
@@ -186,9 +186,9 @@ Enter with: toolbox enter my_ubuntu_18_04
 </div>
 </div>
 </div>
-<div id="outline-container-org592e78c" class="outline-3">
-<h3 id="org592e78c">Toolbox ile Arch konteynerı çalıştırma</h3>
-<div class="outline-text-3" id="text-org592e78c">
+<div id="outline-container-org006d950" class="outline-3">
+<h3 id="org006d950">Toolbox ile Arch konteynerı çalıştırma</h3>
+<div class="outline-text-3" id="text-org006d950">
 <p>
 Toolbox resmi olarak desteklemiyor fakat yinede Toolbox için Arch imajı istiyorsanız şu komutları takip edin:
 </p>
@@ -207,9 +207,9 @@ Toolbox alternatifi bir projeden daha bahsetmek istiyorum kısaca. Projenin adı
 </p>
 </div>
 </div>
-<div id="outline-container-org3f08853" class="outline-3">
-<h3 id="org3f08853">Kaynak</h3>
-<div class="outline-text-3" id="text-org3f08853">
+<div id="outline-container-org6c374bd" class="outline-3">
+<h3 id="org6c374bd">Kaynak</h3>
+<div class="outline-text-3" id="text-org6c374bd">
 <hr>
 <ol class="org-ol">
 <li>Fedora Project. Updates and Rollbacks. (2 Mayıs 2022). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: <a href="https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/">https://docs.fedoraproject.org</a> | <a href="https://web.archive.org/web/20220504154831/https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/">Arşiv</a></li>
