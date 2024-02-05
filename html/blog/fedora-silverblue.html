@@ -103,9 +103,9 @@ h2 {
 </body>
 </div>
 <div id="content" class="content">
-<div id="outline-container-org0780115" class="outline-2">
-<h2 id="org0780115">Fedora Silverblue  <br>  değişmeyen işletim  <br>  sistemi</h2>
-<div class="outline-text-2" id="text-org0780115">
+<div id="outline-container-org924eba2" class="outline-2">
+<h2 id="org924eba2">Fedora Silverblue  <br>  değişmeyen işletim  <br>  sistemi</h2>
+<div class="outline-text-2" id="text-org924eba2">
 <p class="published">
 Sal 10-05-2022
 </p>
@@ -116,9 +116,9 @@ Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını d�
 </p>
 </div>
 </div>
-<div id="outline-container-orgd8c4db4" class="outline-2">
-<h2 id="orgd8c4db4">Immutable  <br>  nedir?</h2>
-<div class="outline-text-2" id="text-orgd8c4db4">
+<div id="outline-container-orgd05b9a1" class="outline-2">
+<h2 id="orgd05b9a1">Immutable  <br>  nedir?</h2>
+<div class="outline-text-2" id="text-orgd05b9a1">
 <p>
 Immutable kavramını biraz açalım, değişmeyen işletim sistemi derken neyin kastedildiğinden bahsedelim.
 Kök dosya sistemi salt-okunur olarak gelir. Bu durum sisteminizde sizden izinsiz dosya değiştirmenin yada dosya yazmanın önüne geçer. Kurduğunuz her paket sisteminizden bağımsız katman üzerinde çalışır. Bilgisayarınızı bootlarken istediğiniz katmanlar arasında geçiş yapabilirsiniz. Kök dosya sistemini değiştirmenin en güzel yolu rpm-ostree paket yöneticisini kullanmak. Sisteminiz istenmedik bir şekilde bozulursa kolayca en son deployment'a geri dönebilirsiniz.
@@ -138,16 +138,16 @@ $ sudo rpm-ostree roolback
 </pre>
 </div>
 </div>
-<div id="outline-container-orgee7ce32" class="outline-2">
-<h2 id="orgee7ce32">Toolbox</h2>
-<div class="outline-text-2" id="text-orgee7ce32">
+<div id="outline-container-org818ea2e" class="outline-2">
+<h2 id="org818ea2e">Toolbox</h2>
+<div class="outline-text-2" id="text-org818ea2e">
 <p>
 Fedora Silverblue gibi immutable dağıtımlarda olması gereken güzel projelerden bir tanesi. Dağıtımınız içinde istediğiniz birçok dağıtıma ait olan imajları kullanarak konteyner oluşturmanıza olanak tanır. Podman'le birlikte çalışır. Konteyner içine yüklediğiniz uygulamaları ister grafik arayüz, ister cli ile çalıştırabilirsiniz. Ana sisteminiz(host) temiz kalmasını sağlar, istenmedik bir durum oluşursa kolayca kaldırabilirsiniz.
 </p>
 </div>
-<div id="outline-container-orgef7bea1" class="outline-4">
-<h4 id="orgef7bea1">Toolbox konteyner oluşturma</h4>
-<div class="outline-text-4" id="text-orgef7bea1">
+<div id="outline-container-org6c4cc84" class="outline-4">
+<h4 id="org6c4cc84">Toolbox konteyner oluşturma</h4>
+<div class="outline-text-4" id="text-org6c4cc84">
 <p>
 Fedoranın en son imajını yükleyerek konteynerı size hazır hale getirir.
 </p>
@@ -175,9 +175,9 @@ Host sisteminizden konteyner girmeden uygulama çalıştırmak için:
 </div>
 </div>
 
-<div id="outline-container-orgdc0ed0c" class="outline-4">
-<h4 id="orgdc0ed0c">Toolbox ile Ubuntu konteynerı çalıştırma</h4>
-<div class="outline-text-4" id="text-orgdc0ed0c">
+<div id="outline-container-org2ebc0ba" class="outline-4">
+<h4 id="org2ebc0ba">Toolbox ile Ubuntu konteynerı çalıştırma</h4>
+<div class="outline-text-4" id="text-org2ebc0ba">
 <p>
 Toolbox ile Ubuntu'nun lts sürümlerini çalıştırmak isterseniz resmi olmayan bir podman imajı. Şu versiyonlar mevcut: 16.04, 18.04, 20.04, 21.10
 </p>
@@ -197,9 +197,9 @@ Enter with: toolbox enter my_ubuntu_18_04
 </div>
 </div>
 </div>
-<div id="outline-container-org8b66b19" class="outline-4">
-<h4 id="org8b66b19">Toolbox ile Arch konteynerı çalıştırma</h4>
-<div class="outline-text-4" id="text-org8b66b19">
+<div id="outline-container-org8c2b6ca" class="outline-4">
+<h4 id="org8c2b6ca">Toolbox ile Arch konteynerı çalıştırma</h4>
+<div class="outline-text-4" id="text-org8c2b6ca">
 <p>
 Toolbox resmi olarak desteklemiyor fakat yinede Toolbox için Arch imajı istiyorsanız şu komutları takip edin:
 </p>
@@ -220,9 +220,9 @@ Toolbox alternatifi bir projeden daha bahsetmek istiyorum kısaca. Projenin adı
 </div>
 </div>
 
-<div id="outline-container-org77937e1" class="outline-2">
-<h2 id="org77937e1">Kaynak</h2>
-<div class="outline-text-2" id="text-org77937e1">
+<div id="outline-container-org2bfa77c" class="outline-2">
+<h2 id="org2bfa77c">Kaynak</h2>
+<div class="outline-text-2" id="text-org2bfa77c">
 <hr>
 <ol class="org-ol">
 <li>Fedora Project. Updates and Rollbacks. (2 Mayıs 2022). Alındığı Tarih: 4 Mayıs 2022. Alındığı Yer: <a href="https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/">https://docs.fedoraproject.org</a> | <a href="https://web.archive.org/web/20220504154831/https://docs.fedoraproject.org/en-US/iot/applying-updates-UG/">Arşiv</a></li>
