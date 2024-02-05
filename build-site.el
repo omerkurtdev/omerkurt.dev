@@ -233,7 +233,7 @@ DIR is the location of the output."
          :sitemap-format-entry loomcom/sitemap-entry-rss)
         ("static"
          :base-directory "org"
-         :base-extension "css\\|txt\\|jpg\\|gif\\|png\\|gpg"
+         :base-extension "css\\|txt\\|jpg\\|gif\\|png\\|asc"
          :recursive t
          :publishing-directory  "html/"
          :publishing-function org-publish-attachment)

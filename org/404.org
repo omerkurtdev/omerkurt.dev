@@ -1,6 +1,3 @@
 #+title: 404
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
 Aradığın sayfa bulunamadı! Ana sayfaya gitmek için [[https://omerkurt.dev][buraya]] tıklayın.
-* dada
-dad
-dasdsadsadsa
