@@ -1,5 +1,0 @@
-:PROPERTIES:
-:ID:       930b4e4a-4350-48fd-bd8c-a802c4aaa640
-:END:
-#+title: emacs
-hi
