@@ -1,0 +1,29 @@
+#+MACRO: NEWLINE @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+title: Whisper.cpp ve mpv ile altyazı oluşturun
+#+subtitle: Whisper.cpp ve mpv{{{NEWLINE}}}ile altyazı oluşturun
+#+OPTIONS: toc:nil title:nil broken-links:auto
+#+DATE:<2024-04-23>
+
+* Whisper.cpp ve mpv{{{NEWLINE}}}ile altyazı oluşturun
+#+begin_comment
+Çok güzel bir mpv plugini keşfettim. Mpv player ile hangi dilde olursa olsun, kolayca altyazı oluşturun.
+#+end_comment
+
+#+ATTR_HTML: :class published
+{{{date(%a %d-%m-%Y)}}}
+-----
+
+Mpv üzerinden film/dizi yada herhangi bir video izliyorsanız ve altyazıya ihtiyacınız varsa, otomatik bir şekilde [[https://github.com/GhostNaN/whisper-subs][whisper-subs]] plugini sayesinde altyazınızı oluşturabilirsiniz. İlk önce plugini ~/.config/mpv/scripts/ klasörüne kopyalayalım. Sonraki adım ise bağımlılıkları indirmek:
+- [[https://github.com/ggerganov/whisper.cpp][whisper.cpp]]
+- [[https://github.com/yt-dlp/yt-dlp][yt-dlp]] (streaming)
+- [[https://ffmpeg.org/][ffmpeg]]
+
+En önemli kısım whisper.cpp eğer nvidia ekran kartı kullanıyorsanız. Cuda çekirdeklerinden yararlanabilirsiniz, zamandan kazanmanıza yarayacaktır. Whisper.cpp dokümanında nvidia adımını takip ederek derlemelisiniz.
+
+Scriptimizi düzenleyeceğimiz en önemli satır:
+
+#+begin_src
+local WHISPER_CMD = "/models/whisper.cpp/main -m /models/whisper-ggml-medium.bin --threads 6 --language en"
+#+end_src
+
+Whisper.cpp ile indirmiş olduğunuz modeli doğru seçtiğinizden emin olun ve hangi dil için altyazı oluşturuyorsanız o ülkenin kodunu girmeyi unutmayın. Evet hepsi bu kadar, **CTRL+.** kombinasyonunu kullanarak sizin için altyazı oluştursun.

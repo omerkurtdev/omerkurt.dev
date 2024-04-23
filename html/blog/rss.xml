@@ -14,10 +14,10 @@
   <link>https://omerkurt.dev/blog/</link>
   <description><![CDATA[]]></description>
   <language>tr</language>
-  <pubDate>Tue, 20 Feb 2024 17:54:20 +0300</pubDate>
-  <lastBuildDate>Tue, 20 Feb 2024 17:54:20 +0300</lastBuildDate>
-  <generator>Emacs 29.2 Org-mode 9.6.15</generator>
-  <webMaster>omerkurt@omerkurt.dev (Omer Kurt)</webMaster>
+  <pubDate>Tue, 23 Apr 2024 23:58:14 +0300</pubDate>
+  <lastBuildDate>Tue, 23 Apr 2024 23:58:14 +0300</lastBuildDate>
+  <generator>Emacs 29.3 Org-mode 9.6.15</generator>
+  <webMaster>omerkurt@msi (Omer Kurt)</webMaster>
   <image>
     <url>https://orgmode.org/img/org-mode-unicorn-logo.png</url>
     <title>Blog yazılarım ve notlarım</title>
@@ -25,19 +25,42 @@
   </image>
 
   <item>
+    <title>Whisper.cpp ve mpv ile altyazı oluşturun</title>
+    <link>https://omerkurt.dev/blog/ingilizce-icin-araclar.html</link>
+    <author>omerkurt@msi (Omer Kurt)</author>
+    <guid isPermaLink="false">https://omerkurt.dev/blog/ingilizce-icin-araclar.html</guid>
+    <pubDate>Tue, 23 Apr 2024 00:00:00 +0300</pubDate>
+
+    <description><![CDATA[<div class="published" id="orgeb435ac">
+    <p>
+    Çok güzel bir mpv plugini keşfettim. Mpv player ile hangi dilde olursa olsun, kolayca altyazı oluşturun.
+    </p>
+
+    <div class="morelink" id="org635c743">
+    <p>
+    <a href="ingilizce-icin-araclar.html">Daha fazla...</a>
+    </p>
+
+    </div>
+
+    </div>
+    <hr />
+    ]]></description>
+  </item>
+  <item>
     <title>GPU Passthrough Kurulumu QEMU/KVM</title>
     <link>https://omerkurt.dev/blog/gpu.html</link>
-    <author>omerkurt@omerkurt.dev (Omer Kurt)</author>
+    <author>omerkurt@msi (Omer Kurt)</author>
     <guid isPermaLink="false">https://omerkurt.dev/blog/gpu.html</guid>
     <pubDate>Wed, 17 Jan 2024 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org82e6c85">
+    <description><![CDATA[<div class="published" id="orgbef0bb5">
     <p>
     GPU passthrough bir GPU direkt olarak sanal makineye sunmasına yarayan
     bir tekniktir. Peki avantajı ne?
     </p>
 
-    <div class="morelink" id="org3847ad8">
+    <div class="morelink" id="orgf4e30cf">
     <p>
     <a href="gpu.html">Daha fazla...</a>
     </p>
@@ -51,16 +74,16 @@
   <item>
     <title>Neden Org Mode</title>
     <link>https://omerkurt.dev/blog/Neden-org-mode.html</link>
-    <author>omerkurt@omerkurt.dev (Omer Kurt)</author>
+    <author>omerkurt@msi (Omer Kurt)</author>
     <guid isPermaLink="false">https://omerkurt.dev/blog/Neden-org-mode.html</guid>
     <pubDate>Sun, 14 Jan 2024 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="orgacdf850">
+    <description><![CDATA[<div class="published" id="orgbf61569">
     <p>
     Neden org-mode markdown'a göre çok iyi? Benim için bir çok nedeni var ve sadece o nedenlerden birkaçını göstermem bile org-mode bakış açınızı değiştirecek. Markdown'a çok alıştık o da mükemmel araçlardan bir tanesi fakat org-mode kadar değil.
     </p>
 
-    <div class="morelink" id="org7a95923">
+    <div class="morelink" id="org94c6f70">
     <p>
     <a href="Neden-org-mode.html">Daha fazla...</a>
     </p>
@@ -74,16 +97,16 @@
   <item>
     <title>Org Mode Blog</title>
     <link>https://omerkurt.dev/blog/Org-mode-blog.html</link>
-    <author>omerkurt@omerkurt.dev (Omer Kurt)</author>
+    <author>omerkurt@msi (Omer Kurt)</author>
     <guid isPermaLink="false">https://omerkurt.dev/blog/Org-mode-blog.html</guid>
     <pubDate>Sun, 08 Jan 2023 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org19b79fe">
+    <description><![CDATA[<div class="published" id="org51779c9">
     <p>
     Blogumu Hugo'dan org-mode'a taşıdım.
     </p>
 
-    <div class="morelink" id="org31ba912">
+    <div class="morelink" id="org9e37892">
     <p>
     <a href="Org-mode-blog.html">Daha fazla...</a>
     </p>
@@ -97,16 +120,16 @@
   <item>
     <title>Fedora Silverblue değişmeyen işletim sistemi</title>
     <link>https://omerkurt.dev/blog/fedora-silverblue.html</link>
-    <author>omerkurt@omerkurt.dev (Omer Kurt)</author>
+    <author>omerkurt@msi (Omer Kurt)</author>
     <guid isPermaLink="false">https://omerkurt.dev/blog/fedora-silverblue.html</guid>
     <pubDate>Tue, 10 May 2022 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="orgc7cab17">
+    <description><![CDATA[<div class="published" id="orga106c67">
     <p>
     Fedora Silverblue kurduktan sonra normal Fedora'dan farkının olmadığını düşüneceksiniz ilk bakışta. Terminali açıp "dnf update" yazana kadar. Silverblue dağıtımı dnf paket yöneticisi ile gelmez. Onun yerine rpm-ostree paket yöneticisi ile gelir. rpm-ostree ile her güncelleme, kaldırma yada yükleme yaptıktan sonra sisteminizi yeniden başlatmanızı isteyecek, diğer dağıtımlardan sonra bu durum bana garip gelmişti. Flatpak yüklü olarak geliyor, Flatpak üzerinden istediğiniz uygulamayı yüklediğinizde tekrar başlatmanıza gerek yok sisteminizin.
     </p>
 
-    <div class="morelink" id="org33cb72b">
+    <div class="morelink" id="org8ff1452">
     <p>
     <a href="fedora-silverblue.html">Daha fazla...</a>
     </p>
@@ -120,17 +143,17 @@
   <item>
     <title>Neden ZSH kullanıyorum?</title>
     <link>https://omerkurt.dev/blog/zsh.html</link>
-    <author>omerkurt@omerkurt.dev (Omer Kurt)</author>
+    <author>omerkurt@msi (Omer Kurt)</author>
     <guid isPermaLink="false">https://omerkurt.dev/blog/zsh.html</guid>
     <pubDate>Sun, 19 Apr 2020 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org35f8e8b">
+    <description><![CDATA[<div class="published" id="orgeea51a8">
     <p>
     <img src="../img/zsh.gif" alt="zsh.gif" />
     Bash kabuğunu uzun süre kullandıktan sonra Zsh geçme fikri vardı aklımda özellikle renklendirme, otomatik tamamlama gibi birçok eklentiye sahip Zsh kabuğundan bahsedeceğim.
     </p>
 
-    <div class="morelink" id="org79f8612">
+    <div class="morelink" id="orgd0c15a4">
     <p>
     <a href="zsh.html">Daha fazla...</a>
     </p>
@@ -144,17 +167,17 @@
   <item>
     <title>Hugo ile blog oluşturmak</title>
     <link>https://omerkurt.dev/blog/hugo-ile-blog-oluşturmak.html</link>
-    <author>omerkurt@omerkurt.dev (Omer Kurt)</author>
+    <author>omerkurt@msi (Omer Kurt)</author>
     <guid isPermaLink="false">https://omerkurt.dev/blog/hugo-ile-blog-oluşturmak.html</guid>
     <pubDate>Thu, 16 Apr 2020 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org73184aa">
+    <description><![CDATA[<div class="published" id="org1e527ae">
     <p>
     <img src="../img/hugo-test.png" alt="hugo-test.png" />
     Bu yazımda sizlere Hugo ile blog kurmayı anlatacağım.
     </p>
 
-    <div class="morelink" id="orgcdb2561">
+    <div class="morelink" id="org14cf8f9">
     <p>
     <a href="hugo-ile-blog-oluşturmak.html">Daha fazla...</a>
     </p>
@@ -168,13 +191,13 @@
   <item>
     <title>Android Linux mu?</title>
     <link>https://omerkurt.dev/blog/android-linux-mu.html</link>
-    <author>omerkurt@omerkurt.dev (Omer Kurt)</author>
+    <author>omerkurt@msi (Omer Kurt)</author>
     <guid isPermaLink="false">https://omerkurt.dev/blog/android-linux-mu.html</guid>
     <pubDate>Fri, 20 Mar 2020 00:00:00 +0300</pubDate>
 
-    <description><![CDATA[<div class="published" id="org238a626">
+    <description><![CDATA[<div class="published" id="org9206290">
 
-    <div id="orgd74b524" class="figure">
+    <div id="org597b111" class="figure">
     <p><img src="https://miro.medium.com/v2/resize:fit:580/0*vCZD5lu9OKTHW_YK.jpg" alt="0*vCZD5lu9OKTHW_YK.jpg" />
     </p>
     </div>
@@ -183,7 +206,7 @@
     Bu sorunun tam bir cevabı yok aslında, yazımdan da bahsedeceğim neden cevabı olmadığını. Birçok topluluk bu konu üzerinde çokça tartıştılar. Android’in bir Linux olup olmadığını anlamak için Linux’un ne olduğunu bilmeliyiz.
     </p>
 
-    <div class="morelink" id="org55cc54c">
+    <div class="morelink" id="orgc173b17">
     <p>
     <a href="android-linux-mu.html">Daha fazla...</a>
     </p>

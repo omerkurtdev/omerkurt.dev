@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hakkımda</title>
+<title>Whisper.cpp ve mpv ile altyazı oluşturun</title>
+<meta name="author" content="omerkurt" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
 </head>
@@ -103,42 +104,38 @@ h2 {
 </div>
 <div id="content" class="content">
 
-<div id="outline-container-org568a605" class="outline-2">
-<h2 id="org568a605">Hakkımda</h2>
-<div class="outline-text-2" id="text-org568a605">
-<p>
-Merhaba, ben Ömer Kurt, özgür yazılım tutkunu yazılım geliştiricisiyim. En sevdiğim dil Lisp. Sadece özgür yazılıma tutkum yok, kamp yapmayı çok severim blogumda da bahsedeceğim yeri geldiğinde.  Pamukkale Üniversitesi Yönetim Bilişim Sistemleri bölümünden mezun oldum.
+<div id="outline-container-org924c816" class="outline-2">
+<h2 id="org924c816">Whisper.cpp ve mpv <br> ile altyazı oluşturun</h2>
+<div class="outline-text-2" id="text-org924c816">
+<p class="published">
+Sal 23-04-2024
 </p>
-
-<p>
-Burası kişisel bir alanım. Sadece yazılım üzerine değil izlediğim film, dizi hakkındaki düşüncelerimden, gezdiğim yerlerden de bahsedeceğim.
-</p>
+<hr>
 
 <p>
-Email üzerinden iletişime geçmeyi tercih ediyorum. Blog yazılarım hakkında soru ve görüşleriniz varsa yorum kısmında belirtebilirsiniz.
-Email adresim <a href="mailto:omer@omerkurt.dev">omer@omerkurt.dev</a>. GPG kullanıyorsanız <a href="omer@omerkurt.dev.asc">public anahtarımı</a> ekleyebilirsiniz.
+Mpv üzerinden film/dizi yada herhangi bir video izliyorsanız ve altyazıya ihtiyacınız varsa, otomatik bir şekilde <a href="https://github.com/GhostNaN/whisper-subs">whisper-subs</a> plugini sayesinde altyazınızı oluşturabilirsiniz. İlk önce plugini ~/.config/mpv/scripts/ klasörüne kopyalayalım. Sonraki adım ise bağımlılıkları indirmek:
 </p>
-
-
-<p>
-Blogu hazırlarken birçok org-mode bloggerlarından ilham alarak hazırladım. İlham aldıklarıma aşağıdaki listeden ulaşabilirsiniz.
-</p>
-
 <ul class="org-ul">
-<li><a href="https://nicolas.petton.fr/">https://nicolas.petton.fr/</a></li>
-<li><a href="https://taingram.org/blog/">https://taingram.org/blog/</a></li>
-<li><a href="https://systemcrafters.net/">https://systemcrafters.net/</a></li>
+<li><a href="https://github.com/ggerganov/whisper.cpp">whisper.cpp</a></li>
+<li><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> (streaming)</li>
+<li><a href="https://ffmpeg.org/">ffmpeg</a></li>
 </ul>
-</div>
-</div>
 
-<div id="outline-container-orgeba2bf3" class="outline-2">
-<h2 id="orgeba2bf3">Link</h2>
-<div class="outline-text-2" id="text-orgeba2bf3">
-<ul class="org-ul">
-<li>Github <a href="https://github.com/omerkurtdev">omerkurtdev</a></li>
-<li>Twitter <a href="https://twitter.com/omerkurtdev">omerkurtdev</a></li>
-</ul>
+<p>
+En önemli kısım whisper.cpp eğer nvidia ekran kartı kullanıyorsanız. Cuda çekirdeklerinden yararlanabilirsiniz, zamandan kazanmanıza yarayacaktır. Whisper.cpp dokümanında nvidia adımını takip ederek derlemelisiniz.
+</p>
+
+<p>
+Scriptimizi düzenleyeceğimiz en önemli satır:
+</p>
+
+<pre class="example">
+local WHISPER_CMD = "/models/whisper.cpp/main -m /models/whisper-ggml-medium.bin --threads 6 --language en"
+</pre>
+
+<p>
+Whisper.cpp ile indirmiş olduğunuz modeli doğru seçtiğinizden emin olun ve hangi dil için altyazı oluşturuyorsanız o ülkenin kodunu girmeyi unutmayın. Evet hepsi bu kadar, <b><b>CTRL+.</b></b> kombinasyonunu kullanarak sizin için altyazı oluştursun.
+</p>
 </div>
 </div>
 </div>

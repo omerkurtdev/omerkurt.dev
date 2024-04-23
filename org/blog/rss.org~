@@ -1,6 +1,19 @@
 #+TITLE: Blog yazılarım ve notlarım
 #+MACRO: NEWLINE @@latex:\@@ @@html:<br>@@ @@ascii:|@@
 #+OPTIONS: toc:nil num:nil title:nil
+* Whisper.cpp ve mpv ile altyazı oluşturun
+:properties:
+:rss_permalink: ingilizce-icin-araclar.html
+:pubdate: 2024-04-23 Sal
+:END:
+#+begin_published
+Çok güzel bir mpv plugini keşfettim. Mpv player ile hangi dilde olursa olsun, kolayca altyazı oluşturun.
+
+#+begin_morelink
+[[file:ingilizce-icin-araclar.org][Daha fazla...]]
+#+end_morelink
+#+end_published
+-----
 * GPU Passthrough Kurulumu QEMU/KVM
 :properties:
 :rss_permalink: gpu.html
