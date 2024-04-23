@@ -3,14 +3,14 @@
 #+OPTIONS: toc:nil num:nil title:nil
 * Whisper.cpp ve mpv ile altyazı oluşturun
 :properties:
-:rss_permalink: ingilizce-icin-araclar.html
+:rss_permalink: whisper.cpp-ve-mpv-ile-altyazı-olusturun.html
 :pubdate: 2024-04-23 Sal
 :END:
 #+begin_published
 Çok güzel bir mpv plugini keşfettim. Mpv player ile hangi dilde olursa olsun, kolayca altyazı oluşturun.
 
 #+begin_morelink
-[[file:ingilizce-icin-araclar.org][Daha fazla...]]
+[[file:whisper.cpp-ve-mpv-ile-altyazı-olusturun.org][Daha fazla...]]
 #+end_morelink
 #+end_published
 -----
