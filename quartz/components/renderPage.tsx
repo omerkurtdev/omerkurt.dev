@@ -193,12 +193,8 @@ export function renderPage(
   components: RenderComponents,
   pageResources: StaticResources,
 ): string {
-  // make a deep copy of the tree so we don't remove the transclusion references
-  // for the file cached in contentMap in build.ts
   const root = clone(componentData.tree) as Root
   renderTranscludes(root, cfg, slug, componentData)
-
-  // set componentData.tree to the edited html that has transclusions rendered
   componentData.tree = root
 
   const {
@@ -231,6 +227,7 @@ export function renderPage(
   )
 
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
+
   const doc = (
     <html lang={lang}>
       <Head {...componentData} />

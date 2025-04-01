@@ -12,11 +12,13 @@ interface ContentMetaOptions {
    */
   showReadingTime: boolean
   showComma: boolean
+  showSourceBlame: boolean
 }
 
 const defaultOptions: ContentMetaOptions = {
   showReadingTime: true,
   showComma: true,
+  showSourceBlame: true,
 }
 
 export default ((opts?: Partial<ContentMetaOptions>) => {
@@ -40,6 +42,18 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
           minutes: Math.ceil(minutes),
         })
         segments.push(<span>{displayedTime}</span>)
+      }
+
+      // Display source blame if enabled AND if it's not an index file
+      const isIndexFile = fileData.filePath?.endsWith("/index.md") || fileData.filePath === "index.md";
+      if (options.showSourceBlame && fileData.filePath && !isIndexFile) {
+        segments.push(
+          <span class="source-blame">
+            <a href={`https://github.com/omerkurtdev/omerkurt.dev/blob/main/content/${fileData.filePath}`} target="_blank" rel="noopener noreferrer">
+              Source
+            </a>
+          </span>
+        )
       }
 
       return (
